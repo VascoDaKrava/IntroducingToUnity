@@ -6,13 +6,12 @@ public class Moving : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
 
-    private Vector2 _inputMoveDirection;
+    private Vector3 _inputMoveDirection;
     private Vector3 _inputLookDirection;
-    private Vector3 _playerPosition;
     private Rigidbody _playerRigidbody;
     private Transform _playerTransform;
     private Transform _cameraTransform;
-    private float _speed = 0.1f;
+    private int _speed = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +20,6 @@ public class Moving : MonoBehaviour
         _playerTransform = GetComponent<Transform>();
         _cameraTransform = _camera.transform;
         _inputLookDirection = _cameraTransform.eulerAngles;
-        _playerPosition = _playerTransform.position;
-
     }
 
     // Update is called once per frame
@@ -39,7 +36,7 @@ public class Moving : MonoBehaviour
     private void getInput()
     {
         _inputMoveDirection.x = Input.GetAxis("Horizontal");
-        _inputMoveDirection.y = Input.GetAxis("Vertical");
+        _inputMoveDirection.z = Input.GetAxis("Vertical");
         _inputMoveDirection.Normalize();
 
         _inputLookDirection.x += Input.GetAxis("Mouse X");
@@ -59,11 +56,8 @@ public class Moving : MonoBehaviour
     /// </summary>
     private void playerMoving()
     {
-        _playerPosition.x += _inputMoveDirection.x;
-        _playerPosition.z += _inputMoveDirection.y;
         _playerTransform.rotation = Quaternion.Euler(0f, _inputLookDirection.x, 0f);
 
-        //_playerTransform.forward.;
-        _playerRigidbody.MovePosition(_playerPosition * _speed);
+        _playerTransform.Translate(_inputMoveDirection * Time.deltaTime * _speed);
     }
 }
