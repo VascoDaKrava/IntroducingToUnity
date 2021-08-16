@@ -11,8 +11,11 @@ public class Moving : MonoBehaviour
     private Rigidbody _playerRigidbody;
     private Transform _playerTransform;
     private Transform _cameraTransform;
-    private int _speed = 2;
-
+    private int _speedWalk = 2;
+    private int _speedRun = 5;
+    private bool _isSpeedUp;
+    private bool _isJump;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +44,10 @@ public class Moving : MonoBehaviour
 
         _inputLookDirection.x += Input.GetAxis("Mouse X");
         _inputLookDirection.y -= Input.GetAxis("Mouse Y");
+
+        _isSpeedUp = Input.GetButton("SpeedUp");
+
+        _isJump = Input.GetButton("Jump");
     }
 
     /// <summary>
@@ -58,6 +65,6 @@ public class Moving : MonoBehaviour
     {
         _playerTransform.rotation = Quaternion.Euler(0f, _inputLookDirection.x, 0f);
 
-        _playerTransform.Translate(_inputMoveDirection * Time.deltaTime * _speed);
+        _playerTransform.Translate(_inputMoveDirection * Time.deltaTime * (_isSpeedUp ? _speedRun : _speedWalk) );
     }
 }
