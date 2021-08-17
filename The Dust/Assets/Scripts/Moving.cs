@@ -57,7 +57,6 @@ public class Moving : MonoBehaviour
     {
         if (_inputLookDirection.y > 65) _inputLookDirection.y = 65;
         if (_inputLookDirection.y < -65) _inputLookDirection.y = -65;
-        Debug.Log(_inputLookDirection.y);
         _cameraTransform.rotation = Quaternion.Euler(_inputLookDirection.y, _inputLookDirection.x, 0f);
     }
 
