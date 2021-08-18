@@ -18,8 +18,6 @@ public class CreationGameObjectsAtRespawns : MonoBehaviour
         {
             //_characters.Add(item);
 
-            Debug.Log(item.name + " - " + item.transform.position);
-
             switch (item.name)
             {
                 case "Player":

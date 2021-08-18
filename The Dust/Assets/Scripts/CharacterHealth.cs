@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterInteraction : MonoBehaviour
+public class CharacterHealth : MonoBehaviour
 {
-    private int _health = 100;
+    [SerializeField] private int _health = 100;
     private int _armor = 0;
+
+    public int Health { get { return _health; } }
 
     /// <summary>
     /// Change Health
@@ -50,17 +52,5 @@ public class CharacterInteraction : MonoBehaviour
     private void Die()
     {
         GameObject.Destroy(gameObject);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
