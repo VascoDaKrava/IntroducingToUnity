@@ -10,6 +10,7 @@ public class StretchGrenade : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("StretchGrenade - B O O M");
             other.GetComponent<CharacterHealth>().ChangeHealth(-_damage);
             Destroy(transform.parent.gameObject);
         }
