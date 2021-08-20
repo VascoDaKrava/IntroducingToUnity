@@ -28,15 +28,15 @@ public class Moving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        getInput();
-        cameraRotate();
-        playerMoving();
+        GetInput();
+        CameraRotate();
+        PlayerMoving();
     }
 
     /// <summary>
     /// Get inputs
     /// </summary>
-    private void getInput()
+    private void GetInput()
     {
         _inputMoveDirection.x = Input.GetAxis("Horizontal");
         _inputMoveDirection.z = Input.GetAxis("Vertical");
@@ -53,7 +53,7 @@ public class Moving : MonoBehaviour
     /// <summary>
     /// Change cameras angles
     /// </summary>
-    private void cameraRotate()
+    private void CameraRotate()
     {
         if (_inputLookDirection.y > 65) _inputLookDirection.y = 65;
         if (_inputLookDirection.y < -65) _inputLookDirection.y = -65;
@@ -64,7 +64,7 @@ public class Moving : MonoBehaviour
     /// <summary>
     /// Move and rotate player
     /// </summary>
-    private void playerMoving()
+    private void PlayerMoving()
     {
         _playerTransform.rotation = Quaternion.Euler(0f, _inputLookDirection.x, 0f);
 

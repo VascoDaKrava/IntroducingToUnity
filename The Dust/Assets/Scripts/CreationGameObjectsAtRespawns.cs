@@ -23,7 +23,7 @@ public class CreationGameObjectsAtRespawns : MonoBehaviour
                 case "Player":
                     GameObject.Instantiate(_player, item.transform.position, Quaternion.identity, _charactersParent.transform);
                     break;
-                
+
                 case "Enemy":
                     GameObject.Instantiate(_enemy, item.transform.position, Quaternion.identity, _charactersParent.transform);
                     break;

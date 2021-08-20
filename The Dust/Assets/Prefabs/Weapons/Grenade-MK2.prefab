@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3187266828565232864}
   - component: {fileID: 855548701535684650}
   m_Layer: 0
-  m_Name: MK2
+  m_Name: Grenade-MK2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

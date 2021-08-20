@@ -18,7 +18,7 @@ public class Interaction : MonoBehaviour
     void Update()
     {
         getInput();
-        if (_weaponActive) letFire();
+        if (_weaponActive) LetFire();
     }
 
     private void getInput()
@@ -27,7 +27,7 @@ public class Interaction : MonoBehaviour
         _isFire2 = Input.GetButtonDown("Fire2");
     }
 
-    private void letFire()
+    private void LetFire()
     {
         if (_isFire1) Debug.Log("Fire 1");
         if (_isFire2)

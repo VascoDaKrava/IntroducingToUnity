@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b725ace0473d52747b5ae69e4c3b3d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 50
 --- !u!1 &8487304594082182464
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +152,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1215823958935038463, guid: 8439ba6592b62064d87eb781e7ccdf8d, type: 3}
       propertyPath: m_Name
-      value: MK2
+      value: Grenade-MK2
       objectReference: {fileID: 0}
     - target: {fileID: 1987400108522287941, guid: 8439ba6592b62064d87eb781e7ccdf8d, type: 3}
       propertyPath: m_RootOrder
