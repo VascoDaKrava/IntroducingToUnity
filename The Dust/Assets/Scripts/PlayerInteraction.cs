@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interaction : MonoBehaviour
+public class PlayerInteraction : MonoBehaviour
 {
     private bool _isFire1;
     private bool _isFire2;
@@ -33,7 +33,7 @@ public class Interaction : MonoBehaviour
         if (_isFire2)
         {
             Debug.Log("Fire 2");
-            Debug.Log(GetComponent<CharacterHealth>().Health);
+            Debug.Log(GetComponent<HealthController>().Health);
         }
     }
 }

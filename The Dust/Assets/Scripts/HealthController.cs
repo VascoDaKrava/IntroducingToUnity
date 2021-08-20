@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterHealth : MonoBehaviour
+public class HealthController : MonoBehaviour
 {
     [SerializeField] private int _health = 100;
     private int _armor = 0;

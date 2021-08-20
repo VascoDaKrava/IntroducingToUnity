@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Moving : MonoBehaviour
+public class PlayerMoving : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
 
@@ -30,7 +30,7 @@ public class Moving : MonoBehaviour
     {
         GetInput();
         CameraRotate();
-        PlayerMoving();
+        PlayerMove();
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public class Moving : MonoBehaviour
     /// <summary>
     /// Move and rotate player
     /// </summary>
-    private void PlayerMoving()
+    private void PlayerMove()
     {
         _playerTransform.rotation = Quaternion.Euler(0f, _inputLookDirection.x, 0f);
 
