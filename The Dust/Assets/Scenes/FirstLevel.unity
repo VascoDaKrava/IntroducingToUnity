@@ -4222,8 +4222,8 @@ GameObject:
   m_Component:
   - component: {fileID: 582597964}
   m_Layer: 0
-  m_Name: CharactersDynamically
-  m_TagString: Untagged
+  m_Name: DynamicallyCreated
+  m_TagString: DynamicallyCreatedTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8369,7 +8369,6 @@ MonoBehaviour:
   _player: {fileID: 8805918250558223170, guid: 55cb28e241e401f42844a96839364b85, type: 3}
   _enemy: {fileID: 7500362143307567951, guid: f9768d83278c6c24a979b6c710680701, type: 3}
   _boss: {fileID: 7500362143307567951, guid: f9768d83278c6c24a979b6c710680701, type: 3}
-  _charactersParent: {fileID: 582597963}
 --- !u!114 &1100704294
 MonoBehaviour:
   m_ObjectHideFlags: 0

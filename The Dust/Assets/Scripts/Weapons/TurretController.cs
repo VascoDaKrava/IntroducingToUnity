@@ -25,6 +25,7 @@ public class TurretController : MonoBehaviour
 
     private Transform _bulletStartLeft;
     private Transform _bulletStartRight;
+    private Transform _bulletParentTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,7 @@ public class TurretController : MonoBehaviour
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         _bulletStartLeft = GameObject.Find("BulletStartLeft").transform;
         _bulletStartRight = GameObject.Find("BulletStartRight").transform;
+        _bulletParentTransform = GameObject.FindGameObjectWithTag("DynamicallyCreatedTag").transform;
         GameObject.FindGameObjectWithTag("GlobalScript").GetComponent<Storage>().TriggerColliderList.Add(_turretTriggerCollider.GetHashCode());
     }
 
@@ -94,12 +96,12 @@ public class TurretController : MonoBehaviour
     private void fire()
     {
         Debug.Log("TurrelController - Fire left gun ");
-        _bulletCloneScript = Instantiate(_bullet, _bulletStartLeft.position, _bulletStartLeft.rotation, _bulletStartLeft).GetComponent<BulletController>();
+        _bulletCloneScript = Instantiate(_bullet, _bulletStartLeft.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletController>();
         _bulletCloneScript.BulletSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;
 
         Debug.Log("TurrelController - Fire right gun ");
-        _bulletCloneScript = Instantiate(_bullet, _bulletStartRight.position, _bulletStartLeft.rotation, _bulletStartRight).GetComponent<BulletController>();
+        _bulletCloneScript = Instantiate(_bullet, _bulletStartRight.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletController>();
         _bulletCloneScript.BulletSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;
     }

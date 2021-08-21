@@ -8,12 +8,13 @@ public class CreationGameObjectsAtRespawns : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _enemy;
     [SerializeField] private GameObject _boss;
-    [SerializeField] private GameObject _charactersParent;
+    private GameObject _charactersParent;
 
     //private List<GameObject> _characters = new List<GameObject>();
 
     private void Awake()
     {
+        _charactersParent = GameObject.FindGameObjectWithTag("DynamicallyCreatedTag");
         foreach (GameObject item in GameObject.FindGameObjectsWithTag("Resp"))
         {
             //_characters.Add(item);

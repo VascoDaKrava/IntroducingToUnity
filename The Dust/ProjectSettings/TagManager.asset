@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Resp
   - GlobalScript
+  - DynamicallyCreatedTag
   layers:
   - Default
   - TransparentFX
