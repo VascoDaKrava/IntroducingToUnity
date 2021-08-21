@@ -8,13 +8,13 @@ public class TurretController : MonoBehaviour
 
     private bool _isPlayerDetected = false;
 
-    private float _distanceForDetection = 7f;
+    private float _distanceForDetection = 18f;
     private float _turretSearchSpeed = 0.10f; // Radian per second
     private float _turretRotateSpeed = 0.75f; // Radian per second
-    private float _bulletSpeed = 0.5f;
-    private int _bulletDamage = 10;
+    private float _bulletSpeed = 10f; // 600 Units per second
+    private int _bulletDamage = 5;
 
-    private int _rateOfFire = 6; // 30 Shots per second
+    private int _rateOfFire = 15; // 30 Shots per second
 
     private BulletController _bulletCloneScript;
 
