@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class StretchGrenade : MonoBehaviour
 {
-    [SerializeField] private int _damage = 50;
+    private int _damage = 50;
+
+    private List<int> _triggerColliderList;
+
+    private void Start()
+    {
+        _triggerColliderList = GameObject.FindGameObjectWithTag("GlobalScript").GetComponent<Storage>().TriggerColliderList;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (_triggerColliderList.Contains(other.GetHashCode()))
         {
-            Debug.Log("StretchGrenade - B O O M");
-            other.GetComponent<HealthController>().ChangeHealth(-_damage);
-            Destroy(transform.parent.gameObject);
+            Debug.Log("StretchGrenade - Skip trigger-collider " + other.name);
+            return;
         }
+
+        Debug.Log("StretchGrenade - B O O M " + other.name);
+
+        if (other.GetComponent<HealthController>() != null)
+            other.GetComponent<HealthController>().ChangeHealth(-_damage);
+
+        Destroy(transform.parent.gameObject);
     }
 }

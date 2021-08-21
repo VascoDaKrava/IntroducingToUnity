@@ -51,6 +51,6 @@ public class HealthController : MonoBehaviour
 
     private void Die()
     {
-        GameObject.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

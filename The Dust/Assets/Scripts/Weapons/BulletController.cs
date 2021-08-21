@@ -36,11 +36,7 @@ public class BulletController : MonoBehaviour
 
         if (other.GetComponent<HealthController>() != null)
             other.GetComponent<HealthController>().ChangeHealth(-BulletDamage);
-
-        //if (other.CompareTag("Player"))
-        //{
-        //    other.GetComponent<HealthController>().ChangeHealth(-BulletDamage);
-        //}
+               
         Destroy(_bulletTransform.gameObject);
     }
 }

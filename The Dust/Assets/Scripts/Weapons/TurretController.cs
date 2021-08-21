@@ -37,6 +37,8 @@ public class TurretController : MonoBehaviour
         _bulletStartLeft = GameObject.Find("BulletStartLeft").transform;
         _bulletStartRight = GameObject.Find("BulletStartRight").transform;
         _bulletParentTransform = GameObject.FindGameObjectWithTag("DynamicallyCreatedTag").transform;
+        
+        // Add own trigger-collider to Global List
         GameObject.FindGameObjectWithTag("GlobalScript").GetComponent<Storage>().TriggerColliderList.Add(_turretTriggerCollider.GetHashCode());
     }
 
