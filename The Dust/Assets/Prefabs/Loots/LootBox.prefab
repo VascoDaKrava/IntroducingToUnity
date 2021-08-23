@@ -30,8 +30,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4545274639173847492}
+  - {fileID: 225357013206044702}
   m_Father: {fileID: 5456076204150688830}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5354696764581716511
 MeshFilter:
@@ -93,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6712303797654191262}
   m_Layer: 0
-  m_Name: Ammo
+  m_Name: LootBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,12 +140,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5735742453046247927}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2755905, y: 0.378937, z: -0.3063485}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1820865, y: 0.04875353, z: -0.30872992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5456076204150688830}
-  m_RootOrder: 0
+  m_Father: {fileID: 4687489643230478261}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &270835859160240310
 MeshFilter:
@@ -306,10 +307,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9073831577092095533}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.05, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
-  - {fileID: 225357013206044702}
   - {fileID: 4687489643230478261}
   m_Father: {fileID: 6712303797654191262}
   m_RootOrder: 0
@@ -375,8 +375,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6397612, y: 0.33464548, z: 0.32943973}
-  m_Center: {x: -0.29527432, y: 0.16732274, z: -0.1597986}
+  m_Size: {x: 0.6, y: 0.3, z: 0.3}
+  m_Center: {x: -0.295, y: 0.15, z: -0.15}
 --- !u!114 &4295506899776259608
 MonoBehaviour:
   m_ObjectHideFlags: 0
