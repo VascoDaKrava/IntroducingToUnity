@@ -8,6 +8,7 @@ public class HealthController : MonoBehaviour
     private int _armor = 0;
 
     public int Health { get { return _health; } }
+    public int Armor { get { return _armor; } }
 
     /// <summary>
     /// Change Health
@@ -15,7 +16,7 @@ public class HealthController : MonoBehaviour
     /// <param name="newHealth"></param>
     public void ChangeHealth(int newHealth)
     {
-        if (_armor > 0) ChangeArmor(ref newHealth);
+        if (_armor > 0) changeArmor(ref newHealth);
         if (newHealth != 0)
         {
             _health += newHealth;
@@ -27,8 +28,13 @@ public class HealthController : MonoBehaviour
     /// <summary>
     /// Change Armor. If nothing to change - change Health.
     /// </summary>
-    /// <param name="newArmor"></param>
-    public void ChangeArmor(ref int newArmor)
+    /// <param name="armor"></param>
+    public void ChangeArmor(int armor)
+    {
+        changeArmor(ref armor);
+    }
+
+    private void changeArmor(ref int newArmor)
     {
         _armor += newArmor;
 

@@ -1,7 +1,10 @@
 public class LootClass
 {
+    #region Enums
+
     public enum LootTypes
     {
+        NULL,
         Aim,
         Ammo,
         Armor,
@@ -11,19 +14,36 @@ public class LootClass
 
     public enum WeaponNames
     {
+        NULL,
         AK74,
         C4
     }
 
-    private LootTypes _loot;
-    private int _power;
-    private WeaponNames _weaponName;
-    private int _quantityBullets;
+    #endregion
+
+    #region Private fields
+
+    private LootTypes _loot = LootTypes.NULL;
+    private int _power = 0;
+    private WeaponNames _weaponName = WeaponNames.NULL;
+    private int _quantityBullets = 0;
+
+    #endregion
+
+    #region Public properties
 
     public LootTypes LootType { get { return _loot; } }
 
     public int LootPower { get { return _power; } }
 
+    public WeaponNames WeaponName { get { return _weaponName; } }
+
+    public int QuantityBullets { get { return _quantityBullets; } }
+
+    #endregion
+
+    #region Constructors
+    
     /// <summary>
     /// Loot for keys
     /// </summary>
@@ -66,4 +86,6 @@ public class LootClass
         _weaponName = weapon;
         _quantityBullets = quantityBullets;
     }
+
+    #endregion
 }

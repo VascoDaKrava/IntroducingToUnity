@@ -8,13 +8,38 @@ public class LootModel : MonoBehaviour
 
     [SerializeField] private LootClass.LootTypes _lootType;
     [SerializeField] private int _power;
+    [SerializeField] private LootClass.WeaponNames _weaponName;
+    [SerializeField] private int _quantityBullets;
 
     public LootClass Loot { get { return _loot; } }
 
     // Start is called before the first frame update
     void Start()
     {
-        _loot = new LootClass(_lootType, _power);
+        switch (_lootType)
+        {
+            case LootClass.LootTypes.Aim:
+                _loot = new LootClass(_lootType, _power);
+                break;
+            
+            case LootClass.LootTypes.Ammo:
+                _loot = new LootClass(_lootType, _weaponName, _quantityBullets);
+                break;
+            
+            case LootClass.LootTypes.Armor:
+                _loot = new LootClass(_lootType, _power);
+                break;
+            
+            case LootClass.LootTypes.Key:
+                _loot = new LootClass(_lootType);
+                break;
+            
+            case LootClass.LootTypes.Weapon:
+                _loot = new LootClass(_lootType, _weaponName);
+                break;
+            
+            default:
+                break;
+        }
     }
-
 }
