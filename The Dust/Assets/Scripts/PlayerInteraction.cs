@@ -7,9 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     private bool _isFire1;
     private bool _isFire2;
     private bool _weaponActive = true;
-
-    //private List<int> _triggerColliderList;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -41,13 +39,36 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     /// <summary>
-    /// Loot collector
+    /// Object contacter
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("PlayerInteraction - Find " + other.name);
 
-        //if (other.CompareTag("LootTag")) other.gameObject.GetComponent<>
+    }
+
+    //public void GetLoot(LootClass collectedLoot)
+    public void GetLoot(GameObject collectedLoot)
+    {
+        switch (collectedLoot.GetComponent<LootModel>().Loot.LootType)
+        {
+            case LootClass.LootTypes.Aim:
+                Debug.Log("PlayerInteraction - Aim, power : " + collectedLoot.GetComponent<LootModel>().Loot.LootPower);
+                break;
+            case LootClass.LootTypes.Ammo:
+                break;
+            case LootClass.LootTypes.Armor:
+                break;
+            case LootClass.LootTypes.Key:
+                break;
+            case LootClass.LootTypes.Weapon:
+                break;
+            default:
+                break;
+        }
+
+        Debug.Log("PlayerInteraction - Get " + collectedLoot.name);
+        Destroy(collectedLoot);
     }
 }

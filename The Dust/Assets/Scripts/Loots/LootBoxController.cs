@@ -17,7 +17,9 @@ public class LootBoxController : MonoBehaviour
     private Transform _topTransform;
     private int _topOpenAngle = 75;
 
-    //private Storage
+    [SerializeField] private GameObject _lootAsset;
+
+    private GameObject _lootToTransfer;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +46,7 @@ public class LootBoxController : MonoBehaviour
                 _needOpen = true;
                 return;
             }
-            if (_isOpen && !_isEmpty) TransferContent();
+            if (_isOpen && !_isEmpty) TransferContent(other);
         }
     }
 
@@ -53,7 +55,10 @@ public class LootBoxController : MonoBehaviour
         // Open Lock
         if (!_isLockOpen)
             if (_lockOpenAngle - ToAngleX(_lockTransform) <= Time.deltaTime * _openSpeed)
+            {
                 _isLockOpen = true;
+                _lootToTransfer = Instantiate(_lootAsset, transform);
+            }
             else
                 _lockTransform.Rotate(Vector3.right * Time.deltaTime * _openSpeed, Space.Self);
 
@@ -61,12 +66,14 @@ public class LootBoxController : MonoBehaviour
         if (_isLockOpen && !_isOpen)
             if (_topOpenAngle - ToAngleX(_topTransform) <= Time.deltaTime * _openSpeed)
                 _isOpen = true;
+
             else
                 _topTransform.Rotate(Vector3.right * Time.deltaTime * _openSpeed, Space.Self);
     }
 
-    private void TransferContent()
+    private void TransferContent(Collider other)
     {
+        other.GetComponent<PlayerInteraction>().GetLoot(_lootToTransfer);
         Debug.Log("Ammo - Transfered");
         _isEmpty = true;
     }
@@ -74,12 +81,12 @@ public class LootBoxController : MonoBehaviour
     /// <summary>
     /// Translate X-rotation angle of transform to humanity-like variant (0-360 degree)
     /// </summary>
-    /// <param name="transform"></param>
+    /// <param name="trans"></param>
     /// <returns></returns>
-    private float ToAngleX(Transform transform)
+    private float ToAngleX(Transform trans)
     {
-        return transform.eulerAngles.x > 90 ?
-                Mathf.Abs(transform.eulerAngles.z * 3 - transform.eulerAngles.x) :
-                Mathf.Abs(transform.eulerAngles.z - transform.eulerAngles.x);
+        return trans.eulerAngles.x > 90 ?
+                Mathf.Abs(trans.eulerAngles.z * 3 - trans.eulerAngles.x) :
+                Mathf.Abs(trans.eulerAngles.z - trans.eulerAngles.x);
     }
 }

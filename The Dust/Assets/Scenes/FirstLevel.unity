@@ -28846,6 +28846,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4295506899776259608, guid: 377893eaad22e7b4b83316d46a475120, type: 3}
+      propertyPath: _loot
+      value: 
+      objectReference: {fileID: 2450330430665406370, guid: 6c51e259d1bf01141a852ce76e5b5528, type: 3}
+    - target: {fileID: 4295506899776259608, guid: 377893eaad22e7b4b83316d46a475120, type: 3}
+      propertyPath: _lootObj
+      value: 
+      objectReference: {fileID: 2450330430665406370, guid: 6c51e259d1bf01141a852ce76e5b5528, type: 3}
+    - target: {fileID: 4295506899776259608, guid: 377893eaad22e7b4b83316d46a475120, type: 3}
+      propertyPath: _lootAsset
+      value: 
+      objectReference: {fileID: 2450330430665406370, guid: 6c51e259d1bf01141a852ce76e5b5528, type: 3}
     - target: {fileID: 6712303797654191262, guid: 377893eaad22e7b4b83316d46a475120, type: 3}
       propertyPath: m_RootOrder
       value: 10
