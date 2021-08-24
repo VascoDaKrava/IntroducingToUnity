@@ -10,6 +10,8 @@ TagManager:
   - LootTag
   - AmmoBoxLockTag
   - AmmoBoxTopTag
+  - DoorLeft
+  - DoorRight
   layers:
   - Default
   - TransparentFX

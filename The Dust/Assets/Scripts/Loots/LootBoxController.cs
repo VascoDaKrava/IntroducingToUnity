@@ -9,7 +9,8 @@ public class LootBoxController : MonoBehaviour
     private bool _isLockOpen = false;
     private bool _isOpen = false;
 
-    private float _openSpeed = 60f; // Degree per second
+    private float _openTopSpeed = 60f; // Degree per second
+    private float _openLockSpeed = 180f; // Degree per second
 
     private Transform _lockTransform;
     private int _lockOpenAngle = 250;
@@ -54,21 +55,21 @@ public class LootBoxController : MonoBehaviour
     {
         // Open Lock
         if (!_isLockOpen)
-            if (_lockOpenAngle - ToAngleX(_lockTransform) <= Time.deltaTime * _openSpeed)
+            if (_lockOpenAngle - Storage.ToAngleX(_lockTransform) <= Time.deltaTime * _openLockSpeed)
             {
                 _isLockOpen = true;
                 _lootToTransfer = Instantiate(_lootAsset, transform);
             }
             else
-                _lockTransform.Rotate(Vector3.right * Time.deltaTime * _openSpeed, Space.Self);
+                _lockTransform.Rotate(Vector3.right * Time.deltaTime * _openLockSpeed, Space.Self);
 
         // Open Top if Lock is open
         if (_isLockOpen && !_isOpen)
-            if (_topOpenAngle - ToAngleX(_topTransform) <= Time.deltaTime * _openSpeed)
+            if (_topOpenAngle - Storage.ToAngleX(_topTransform) <= Time.deltaTime * _openTopSpeed)
                 _isOpen = true;
 
             else
-                _topTransform.Rotate(Vector3.right * Time.deltaTime * _openSpeed, Space.Self);
+                _topTransform.Rotate(Vector3.right * Time.deltaTime * _openTopSpeed, Space.Self);
     }
 
     private void TransferContent(Collider other)
@@ -76,17 +77,5 @@ public class LootBoxController : MonoBehaviour
         other.GetComponent<PlayerInteraction>().GetLoot(_lootToTransfer);
         Debug.Log("Ammo - Transfered");
         _isEmpty = true;
-    }
-
-    /// <summary>
-    /// Translate X-rotation angle of transform to humanity-like variant (0-360 degree)
-    /// </summary>
-    /// <param name="trans"></param>
-    /// <returns></returns>
-    private float ToAngleX(Transform trans)
-    {
-        return trans.eulerAngles.x > 90 ?
-                Mathf.Abs(trans.eulerAngles.z * 3 - trans.eulerAngles.x) :
-                Mathf.Abs(trans.eulerAngles.z - trans.eulerAngles.x);
     }
 }

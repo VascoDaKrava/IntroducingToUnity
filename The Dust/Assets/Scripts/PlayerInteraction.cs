@@ -15,6 +15,8 @@ public class PlayerInteraction : MonoBehaviour
     private List<LootClass.LootTypes> _inventory = new List<LootClass.LootTypes>();
     private List<LootClass.WeaponNames> _weaponsList = new List<LootClass.WeaponNames>();
 
+    public List<LootClass.LootTypes> Inventory { get { return _inventory; } }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +64,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         Debug.Log("PlayerInteraction - Find " + other.name);
     }
+
 
 
     public void GetLoot(GameObject pickUpedLootObj)

@@ -381,6 +381,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 113700796}
     m_Modifications:
     - target: {fileID: 789239773172502136, guid: 96fab7cdca9fc0047b93d0bbf5798c20, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 789239773172502136, guid: 96fab7cdca9fc0047b93d0bbf5798c20, type: 3}
       propertyPath: m_Name
       value: LootBox-Ammo
       objectReference: {fileID: 0}
@@ -524,6 +528,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 113700796}
     m_Modifications:
+    - target: {fileID: 789239773172502136, guid: 96fab7cdca9fc0047b93d0bbf5798c20, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 789239773172502136, guid: 96fab7cdca9fc0047b93d0bbf5798c20, type: 3}
       propertyPath: m_Name
       value: LootBox-Ammo (1)
@@ -3744,6 +3752,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6076888904438387379, guid: bf574a06990917e4fa720087ac48498d, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6076888904438387379, guid: bf574a06990917e4fa720087ac48498d, type: 3}
       propertyPath: m_Name
       value: LootBox-Key
@@ -7461,7 +7473,7 @@ GameObject:
   m_Layer: 0
   m_Name: Quests
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7477,7 +7489,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 880887897}
-  - {fileID: 1386475963}
+  - {fileID: 6362058944174486078}
   - {fileID: 342362465}
   - {fileID: 25462565}
   - {fileID: 1342256481}
@@ -8154,6 +8166,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 113700796}
     m_Modifications:
+    - target: {fileID: 4035392522815686840, guid: 283277a11bfe3814c8574d996defd338, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4035392522815686840, guid: 283277a11bfe3814c8574d996defd338, type: 3}
       propertyPath: m_Name
       value: LootBox-Armor (1)
@@ -17291,36 +17307,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7548798384614290005, guid: b0199a1980182c84b85e65a9937e65c6, type: 3}
   m_PrefabInstance: {fileID: 1384693246}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1386475962
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1386475963}
-  m_Layer: 0
-  m_Name: Door-Key
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1386475963
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386475962}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48, y: 0, z: 68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 653148374}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1392594861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17800,6 +17786,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 113700796}
     m_Modifications:
+    - target: {fileID: 4035392522815686840, guid: 283277a11bfe3814c8574d996defd338, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 4035392522815686840, guid: 283277a11bfe3814c8574d996defd338, type: 3}
       propertyPath: m_Name
       value: LootBox-Armor
@@ -21838,6 +21828,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 113700796}
     m_Modifications:
     - target: {fileID: 4035392522815686840, guid: 283277a11bfe3814c8574d996defd338, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 4035392522815686840, guid: 283277a11bfe3814c8574d996defd338, type: 3}
       propertyPath: m_Name
       value: LootBox-Armor (3)
       objectReference: {fileID: 0}
@@ -23481,6 +23475,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 113700796}
     m_Modifications:
+    - target: {fileID: 789239773172502136, guid: 96fab7cdca9fc0047b93d0bbf5798c20, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 789239773172502136, guid: 96fab7cdca9fc0047b93d0bbf5798c20, type: 3}
       propertyPath: m_Name
       value: LootBox-Ammo (2)
@@ -26711,6 +26709,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 113700796}
     m_Modifications:
     - target: {fileID: 4035392522815686840, guid: 283277a11bfe3814c8574d996defd338, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 4035392522815686840, guid: 283277a11bfe3814c8574d996defd338, type: 3}
       propertyPath: m_Name
       value: LootBox-Armor (2)
       objectReference: {fileID: 0}
@@ -29179,6 +29181,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 113700796}
     m_Modifications:
     - target: {fileID: 1306808646735467113, guid: 810c57f2cbddb8348ac4e9258858b9cc, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 1306808646735467113, guid: 810c57f2cbddb8348ac4e9258858b9cc, type: 3}
       propertyPath: m_Name
       value: LootBox-AK74
       objectReference: {fileID: 0}
@@ -29228,6 +29234,84 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 810c57f2cbddb8348ac4e9258858b9cc, type: 3}
+--- !u!1001 &6362058944174486077
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 653148374}
+    m_Modifications:
+    - target: {fileID: 1787333711829278302, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 1787333711829278302, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_Name
+      value: Door-Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 47
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 71
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+--- !u!4 &6362058944174486078 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7654034494202229938, guid: b58a649344f4e0649a547abdacd4b18b, type: 3}
+  m_PrefabInstance: {fileID: 6362058944174486077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6712303797886464588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6116009289773163560, guid: 810c57f2cbddb8348ac4e9258858b9cc, type: 3}
