@@ -6,8 +6,11 @@ public class KeyUsage : MonoBehaviour
 {
     private DoorController _door;
     private BoxCollider _zoneKeyUsage;
+    
     private Vector3 _zoneSize = new Vector3(1, 2, 1);
     private Vector3 _zoneCenter = new Vector3(-0.5f, 1, 0);
+
+    private string _playerTag = "Player";
 
     // Start is called before the first frame update
     void Start()
@@ -19,15 +22,9 @@ public class KeyUsage : MonoBehaviour
         _zoneKeyUsage.isTrigger = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && _door.IsClosed)
+        if (other.gameObject.CompareTag(_playerTag) && _door.IsClosed)
         {
             if (other.GetComponent<PlayerInteraction>().IsInInventory(LootClass.LootTypes.Key))
             {

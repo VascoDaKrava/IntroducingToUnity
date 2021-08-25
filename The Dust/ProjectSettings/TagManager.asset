@@ -12,6 +12,7 @@ TagManager:
   - AmmoBoxTopTag
   - DoorLeft
   - DoorRight
+  - QuestPlatform
   layers:
   - Default
   - TransparentFX
