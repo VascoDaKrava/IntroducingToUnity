@@ -14,18 +14,6 @@ public class C4Controller : MonoBehaviour
 
     private string _boomMethodName = "BombExplosion";
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && !_bombPlanted)
@@ -34,7 +22,7 @@ public class C4Controller : MonoBehaviour
             {
                 other.GetComponent<PlayerInteraction>().RemoveFromInventory(LootClass.WeaponNames.C4);
                 Instantiate(_bombC4, other.transform.position, Quaternion.identity, this.transform);
-                Storage.ToLog(this, Storage.GetCallerName(), "Bomb has bin planted!");
+                Storage.ToLog(this, Storage.GetCallerName(), "Bomb has been planted!");
                 Invoke(_boomMethodName, _timeToExplosion);
                 _bombPlanted = true;
             }

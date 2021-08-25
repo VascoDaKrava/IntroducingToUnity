@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorKeyController : MonoBehaviour
+public class DoorController : MonoBehaviour
 {
     private Transform _leftDoorTransform;
     private Transform _rightDoorTransform;
@@ -13,6 +13,12 @@ public class DoorKeyController : MonoBehaviour
 
     private bool _isClosed = true;
     private bool _needOpen = false;
+
+    public bool NeedOpen { get { return _needOpen; } set { _needOpen = value; } }
+
+    public bool IsClosed { get { return _isClosed; } }
+
+    public int OpenAnge { get { return _openAngle; } set { _openAngle = value; } }
 
 
     // Start is called before the first frame update
@@ -30,21 +36,7 @@ public class DoorKeyController : MonoBehaviour
     {
         if (_needOpen) OpenDoor();
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player") && _isClosed)
-        {
-            if (other.GetComponent<PlayerInteraction>().IsInInventory(LootClass.LootTypes.Key))
-            {
-                other.GetComponent<PlayerInteraction>().RemoveFromInventory(LootClass.LootTypes.Key);
-                _needOpen = true;
-            }
-            else
-                Storage.ToLog(this, Storage.GetCallerName(), "No keys");
-        }
-    }
-
+      
     /// <summary>
     /// Rotate doors
     /// </summary>
@@ -61,5 +53,15 @@ public class DoorKeyController : MonoBehaviour
                 _leftDoorTransform.Rotate(Vector3.up * Time.deltaTime * _openSpeed, Space.Self);
                 _rightDoorTransform.Rotate(Vector3.down * Time.deltaTime * _openSpeed, Space.Self);
             }
+    }
+
+    /// <summary>
+    /// Immediately destroy doors
+    /// </summary>
+    public void DestroyDoors()
+    {
+        Destroy(_leftDoorTransform);
+        Destroy(_rightDoorTransform);
+        Storage.ToLog(this, Storage.GetCallerName(), "Doors has been destroyed!");
     }
 }
