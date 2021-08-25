@@ -75,7 +75,7 @@ public class LootBoxController : MonoBehaviour
     private void TransferContent(Collider other)
     {
         other.GetComponent<PlayerInteraction>().GetLoot(_lootToTransfer);
-        Debug.Log("Ammo - Transfered");
+        Storage.ToLog(this, Storage.GetCallerName(), _lootToTransfer.name);
         _isEmpty = true;
     }
 }

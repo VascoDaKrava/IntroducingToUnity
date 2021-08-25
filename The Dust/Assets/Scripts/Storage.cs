@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Storage : MonoBehaviour
@@ -28,6 +29,27 @@ public class Storage : MonoBehaviour
     /// <returns></returns>
     public static float ToAngleY(Transform trans)
     {
-        return trans.eulerAngles.y - 90;
+        return trans.eulerAngles.y - trans.parent.eulerAngles.y;
+    }
+
+    /// <summary>
+    /// Write message to Unity log from current class and method
+    /// </summary>
+    /// <param name="obj">Current class. Write - this</param>
+    /// <param name="met">Current method. Write - Storage.GetCallerName()</param>
+    /// <param name="message">Message for logging</param>
+    public static void ToLog(Object obj, string met, string message)
+    {
+        Debug.Log($"{obj.GetType()} : {met} - {message}");
+    }
+
+    /// <summary>
+    /// Get name of current method
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public static string GetCallerName([CallerMemberName] string name = "")
+    {
+        return name;
     }
 }

@@ -35,16 +35,19 @@ public class DoorKeyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && _isClosed)
         {
-            if (other.GetComponent<PlayerInteraction>().Inventory.Contains(LootClass.LootTypes.Key))
+            if (other.GetComponent<PlayerInteraction>().IsInInventory(LootClass.LootTypes.Key))
             {
-                other.GetComponent<PlayerInteraction>().Inventory.Remove(LootClass.LootTypes.Key);
+                other.GetComponent<PlayerInteraction>().RemoveFromInventory(LootClass.LootTypes.Key);
                 _needOpen = true;
             }
             else
-                Debug.Log("DoorKeyController - No keys");
+                Storage.ToLog(this, Storage.GetCallerName(), "No keys");
         }
     }
 
+    /// <summary>
+    /// Rotate doors
+    /// </summary>
     private void OpenDoor()
     {
         if (_isClosed)

@@ -14,7 +14,9 @@ public class TurretController : MonoBehaviour
     private float _bulletSpeed = 10f; // 600 Units per second
     private int _bulletDamage = 5;
 
-    private int _rateOfFire = 15; // 30 Shots per second
+    private int _rateOfFire = 30; // Shots per second
+
+    private string _fireMethodName = "Fire"; // Name of fire-method for Invoke
 
     private BulletController _bulletCloneScript;
 
@@ -56,7 +58,7 @@ public class TurretController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("TurrelController - Player DETECTED");
+            Storage.ToLog(this, Storage.GetCallerName(), "Player DETECTED");
             _isPlayerDetected = true;
         }
     }
@@ -65,7 +67,7 @@ public class TurretController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("TurrelController - Player MISSED");
+            Storage.ToLog(this, Storage.GetCallerName(), "Player MISSED");
             _isPlayerDetected = false;
         }
     }
@@ -73,7 +75,7 @@ public class TurretController : MonoBehaviour
     private void StandbyMode()
     {
         _turretTransform.rotation = Quaternion.Euler(0, _turretTransform.rotation.eulerAngles.y + _turretSearchSpeed, 0);
-        if (IsInvoking("fire"))
+        if (IsInvoking(_fireMethodName))
             CancelInvoke();
     }
 
@@ -85,24 +87,27 @@ public class TurretController : MonoBehaviour
             0));
         if (Vector3.Angle(_turretTransform.forward, _playerTransform.position - _turretTransform.position) < 30)
         {
-            if (!IsInvoking("fire"))
-                InvokeRepeating("fire", 0, 60 / _rateOfFire);
+            if (!IsInvoking(_fireMethodName))
+                InvokeRepeating(_fireMethodName, 0, 60 / _rateOfFire);
         }
         else
         {
-            if (IsInvoking("fire"))
+            if (IsInvoking(_fireMethodName))
                 CancelInvoke();
         }
     }
 
-    private void fire()
+    /// <summary>
+    /// Do not forget to change value of variable _fireMethodName with name of thos method
+    /// </summary>
+    private void Fire()
     {
-        Debug.Log("TurrelController - Fire left gun ");
+        Storage.ToLog(this, Storage.GetCallerName(), "Left gun");
         _bulletCloneScript = Instantiate(_bullet, _bulletStartLeft.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletController>();
         _bulletCloneScript.BulletSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;
 
-        Debug.Log("TurrelController - Fire right gun ");
+        Storage.ToLog(this, Storage.GetCallerName(), "Right gun");
         _bulletCloneScript = Instantiate(_bullet, _bulletStartRight.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletController>();
         _bulletCloneScript.BulletSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;

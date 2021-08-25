@@ -15,13 +15,9 @@ public class StretchGrenade : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_triggerColliderList.Contains(other.GetHashCode()))
-        {
-            Debug.Log("StretchGrenade - Skip trigger-collider " + other.name);
-            return;
-        }
+        if (_triggerColliderList.Contains(other.GetHashCode())) return;
 
-        Debug.Log("StretchGrenade - B O O M " + other.name);
+        Storage.ToLog(this, Storage.GetCallerName(), "B O O M --> " + other.name);
 
         if (other.GetComponent<HealthController>() != null)
             other.GetComponent<HealthController>().ChangeHealth(-_damage);
