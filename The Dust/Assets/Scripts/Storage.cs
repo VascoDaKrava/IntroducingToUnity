@@ -35,7 +35,7 @@ public class Storage : MonoBehaviour
     /// <returns></returns>
     public static float ToAngleY(Transform trans)
     {
-        return trans.eulerAngles.y - trans.parent.eulerAngles.y;
+        return (trans.eulerAngles.y - trans.parent.eulerAngles.y < 0)? trans.eulerAngles.y - trans.parent.eulerAngles.y + 360 : trans.eulerAngles.y - trans.parent.eulerAngles.y;
     }
 
     /// <summary>
