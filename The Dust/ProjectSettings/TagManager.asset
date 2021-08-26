@@ -13,6 +13,9 @@ TagManager:
   - DoorLeft
   - DoorRight
   - QuestPlatform
+  - NordWayPoints
+  - UndergroundWayPoints
+  - SandWayPoints
   layers:
   - Default
   - TransparentFX
