@@ -46,7 +46,7 @@ public class DoorController : MonoBehaviour
     private void OpenDoor()
     {
         if (_isClosed)
-            if (_openAngle - Storage.ToAngleY(_leftDoorTransform) <= Time.deltaTime * _openSpeed)
+            if (Mathf.Abs(_openAngle - Storage.ToAngleY(_leftDoorTransform)) <= Time.deltaTime * _openSpeed)
             {
                 _isClosed = false;
                 _needOpen = false;
