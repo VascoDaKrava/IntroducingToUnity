@@ -15,34 +15,58 @@ public class Storage : MonoBehaviour
 
     #region For Navigation
 
-    private Stack<Vector3> _nordWay = new Stack<Vector3>();
-    private Stack<Vector3> _undergroundWay = new Stack<Vector3>();
-    private Stack<Vector3> _sandWay = new Stack<Vector3>();
+    private List<Vector3> _nordWay = new List<Vector3>();
+    private List<Vector3> _undergroundWay = new List<Vector3>();
+    private List<Vector3> _sandWay = new List<Vector3>();
 
-    public Stack<Vector3> NordWay { get { return _nordWay; } }
-    public Stack<Vector3> UndeegroundWay { get { return _undergroundWay; } }
-    public Stack<Vector3> SandWay { get { return _sandWay; } }
+    public List<Vector3> NordWay { get { return _nordWay; } }
+    public List<Vector3> UndeegroundWay { get { return _undergroundWay; } }
+    public List<Vector3> SandWay { get { return _sandWay; } }
 
     #endregion
 
     #region Statics for Tags
 
-    private static string _playerTag = "Player";
+    //private static string _respTag = "Resp";
+    private static string _globalTag = "GlobalScript";
+    //private static string _dynamicalyCreatedTag = "DynamicallyCreatedTag";
+    //private static string _lootTag = "LootTag";
+    //private static string _ammoBoxLockTag = "AmmoBoxLockTag";
+    //private static string _ammoBoxTopTag = "AmmoBoxTopTag";
+    //private static string _DoorLeftTag = "DoorLeft";
+    //private static string _DoorRightTag = "DoorRight";
     private static string _platformTag = "QuestPlatform";
     private static string _nordWayPointsTag = "NordWayPoints";
     private static string _undergroundWayPointsTag = "UndergroundWayPoints";
     private static string _sandWayPointsTag = "SandWayPoints";
+    private static string _navPointsTag = "NavPoints";
+
+
+    private static string _playerTag = "Player";
 
     public static string PlayerTag { get { return _playerTag; } }
+    public static string GlobalTag { get { return _globalTag; } }
     public static string PlatformTag { get { return _platformTag; } }
+    public static string NordWayTag { get { return _nordWayPointsTag; } }
+    public static string UndergroundWayTag { get { return _undergroundWayPointsTag; } }
+    public static string SandWayTag { get { return _sandWayPointsTag; } }
+    public static string NavPointsTag { get { return _navPointsTag; } }
 
     #endregion
 
-    private void Start()
+    private void Awake()
     {
-        foreach (GameObject item in GameObject.FindGameObjectsWithTag(_nordWayPointsTag))
+        // Search NavPoints
+        foreach (Transform item in GameObject.FindGameObjectWithTag(_navPointsTag).GetComponentsInChildren(typeof(Transform)))
         {
-            _nordWay.Push(item.transform.position);
+            if (item.CompareTag(NordWayTag))
+                _nordWay.Add(item.position);
+            
+            else if (item.CompareTag(UndergroundWayTag))
+                _undergroundWay.Add(item.position);
+            
+            else if (item.CompareTag(SandWayTag))
+                _sandWay.Add(item.position);
         }
     }
 
@@ -67,7 +91,7 @@ public class Storage : MonoBehaviour
     /// <returns></returns>
     public static float ToAngleY(Transform trans)
     {
-        return (trans.eulerAngles.y - trans.parent.eulerAngles.y < 0)? trans.eulerAngles.y - trans.parent.eulerAngles.y + 360 : trans.eulerAngles.y - trans.parent.eulerAngles.y;
+        return (trans.eulerAngles.y - trans.parent.eulerAngles.y < 0) ? trans.eulerAngles.y - trans.parent.eulerAngles.y + 360 : trans.eulerAngles.y - trans.parent.eulerAngles.y;
     }
 
     /// <summary>

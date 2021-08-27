@@ -16,6 +16,7 @@ TagManager:
   - NordWayPoints
   - UndergroundWayPoints
   - SandWayPoints
+  - NavPoints
   layers:
   - Default
   - TransparentFX
