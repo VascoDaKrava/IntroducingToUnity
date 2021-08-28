@@ -17,6 +17,8 @@ TagManager:
   - UndergroundWayPoints
   - SandWayPoints
   - NavPoints
+  - WeaponPositionTag
+  - Weapon
   layers:
   - Default
   - TransparentFX

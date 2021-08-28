@@ -27,6 +27,23 @@ public class Storage : MonoBehaviour
 
     #region Statics for Tags
 
+    #region ToDo
+
+    //public enum VarTag
+    //{
+    //    PlayerTag
+    //}
+
+    //private static Dictionary<VarTag, string> _tags = new Dictionary<VarTag, string>
+    //{
+    //    {VarTag.PlayerTag, "Player" }
+    //};
+    //public string this[VarTag tag]
+    //{
+    //    get { return _tags[tag]; }
+    //}
+    #endregion
+
     //private static string _respTag = "Resp";
     private static string _globalTag = "GlobalScript";
     //private static string _dynamicalyCreatedTag = "DynamicallyCreatedTag";
@@ -40,9 +57,11 @@ public class Storage : MonoBehaviour
     private static string _undergroundWayPointsTag = "UndergroundWayPoints";
     private static string _sandWayPointsTag = "SandWayPoints";
     private static string _navPointsTag = "NavPoints";
-
+    private static string _weaponPosTag = "WeaponPositionTag";
+    private static string _weaponTag = "Weapon";
 
     private static string _playerTag = "Player";
+
 
     public static string PlayerTag { get { return _playerTag; } }
     public static string GlobalTag { get { return _globalTag; } }
@@ -51,6 +70,8 @@ public class Storage : MonoBehaviour
     public static string UndergroundWayTag { get { return _undergroundWayPointsTag; } }
     public static string SandWayTag { get { return _sandWayPointsTag; } }
     public static string NavPointsTag { get { return _navPointsTag; } }
+    public static string WeaponPositionTag { get { return _weaponPosTag; } }
+    public static string WeaponTag { get { return _weaponTag; } }
 
     #endregion
 
@@ -71,6 +92,22 @@ public class Storage : MonoBehaviour
     }
 
     #region Static methods
+
+    /// <summary>
+    /// Find transform with "tag" in children of "gameObj"
+    /// </summary>
+    /// <param name="gameObj">GameObject, where searching</param>
+    /// <param name="tag">Tag for searched transform</param>
+    /// <returns></returns>
+    public static Transform FindTransformInChildrenWithTag(GameObject gameObj, string tag)
+    {
+        foreach (Transform item in gameObj.GetComponentsInChildren(typeof(Transform)))
+        {
+            if (item.CompareTag(tag))
+                return item;
+        }
+        return null;
+    }
 
     /// <summary>
     /// Translate X-rotation angle of transform to humanity-like variant (0-360 degree)
