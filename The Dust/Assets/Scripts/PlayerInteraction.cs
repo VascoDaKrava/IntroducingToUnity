@@ -47,6 +47,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         getInput();
         if (_weaponActive) LetFire();
+        if (_isFire2) LetFire();
     }
 
 
@@ -69,6 +70,7 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log(Time.time + " Weapon\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Weapon));
             Debug.Log(Time.time + " \tC4\t: " + _weaponsList.Contains(LootClass.WeaponNames.C4));
             Debug.Log(Time.time + " \tAK74\t: " + _weaponsList.Contains(LootClass.WeaponNames.AK74));
+            Debug.Log(Time.time + " \tAK74 clip fill\t: " + _weaponController.ClipFullness);
         }
     }
 
@@ -109,6 +111,11 @@ public class PlayerInteraction : MonoBehaviour
 
             case LootClass.LootTypes.Ammo:
                 _quantityBullets += _loot.QuantityBullets;
+                if (_weaponActive)
+                {
+                    _weaponController.ClipFullness = _quantityBullets;
+                    _quantityBullets = 0;
+                }
                 break;
 
             case LootClass.LootTypes.Armor:
@@ -140,6 +147,10 @@ public class PlayerInteraction : MonoBehaviour
                     _weaponObj.transform.localPosition = Vector3.zero;
                     _weaponObj.transform.localRotation = Quaternion.identity;
                     _weaponObj.transform.localScale = Vector3.one;
+
+                    // Load bullets to weapon clip
+                    _weaponController.ClipFullness = _quantityBullets;
+                    _quantityBullets = 0;
                 }
                 break;
 

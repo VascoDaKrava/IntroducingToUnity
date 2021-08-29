@@ -537,6 +537,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2c23f7b914b11499c8f255fed49e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bullet: {fileID: 4394750291745366717, guid: 603beddc2ba9e454e8e0877b3e0aea3b, type: 3}
+  _rateOfFire: 100
+  _bulletSpeed: 50
+  _bulletDamage: 10
+  _clipCapacity: 30
 --- !u!1 &1234268095883242486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,7 +2833,7 @@ GameObject:
   - component: {fileID: 3351825114500932730}
   m_Layer: 0
   m_Name: BulletStart
-  m_TagString: Untagged
+  m_TagString: BulletStart1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

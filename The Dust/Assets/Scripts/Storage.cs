@@ -44,27 +44,34 @@ public class Storage : MonoBehaviour
     //}
     #endregion
 
-    //private static string _respTag = "Resp";
-    private static string _globalTag = "GlobalScript";
-    //private static string _dynamicalyCreatedTag = "DynamicallyCreatedTag";
-    //private static string _lootTag = "LootTag";
-    //private static string _ammoBoxLockTag = "AmmoBoxLockTag";
-    //private static string _ammoBoxTopTag = "AmmoBoxTopTag";
-    //private static string _DoorLeftTag = "DoorLeft";
-    //private static string _DoorRightTag = "DoorRight";
-    private static string _platformTag = "QuestPlatform";
-    private static string _nordWayPointsTag = "NordWayPoints";
-    private static string _undergroundWayPointsTag = "UndergroundWayPoints";
-    private static string _sandWayPointsTag = "SandWayPoints";
-    private static string _navPointsTag = "NavPoints";
-    private static string _weaponPosTag = "WeaponPositionTag";
-    private static string _weaponTag = "Weapon";
 
+    private static string _respTag = "Resp";// 00
+    private static string _globalTag = "GlobalScript";// 01
+    private static string _dynamicalyCreatedTag = "DynamicallyCreatedTag";// 02
+    //private static string _lootTag = "LootTag";// 03
+    //private static string _ammoBoxLockTag = "AmmoBoxLockTag";// 04
+    //private static string _ammoBoxTopTag = "AmmoBoxTopTag";// 05
+    //private static string _DoorLeftTag = "DoorLeft";// 06
+    //private static string _DoorRightTag = "DoorRight";// 07
+    private static string _platformTag = "QuestPlatform";// 08
+    private static string _nordWayPointsTag = "NordWayPoints";// 09
+    private static string _undergroundWayPointsTag = "UndergroundWayPoints";// 10
+    private static string _sandWayPointsTag = "SandWayPoints";// 11
+    private static string _navPointsTag = "NavPoints";// 12
+    private static string _weaponPosTag = "WeaponPositionTag";// 13
+    private static string _weaponTag = "Weapon";// 14
+    private static string _bullet1StartPositionTag = "BulletStart1";// 15
+    private static string _bullet2StartPositionTag = "BulletStart2";// 16
+
+    private static string _untagged = "Untagged";
     private static string _playerTag = "Player";
-
-
     public static string PlayerTag { get { return _playerTag; } }
+    public static string Untagged { get { return _untagged; } }
+
+
+    public static string RespTag { get { return _respTag; } }
     public static string GlobalTag { get { return _globalTag; } }
+    public static string DynamicallyCreatedTag { get { return _dynamicalyCreatedTag; } }
     public static string PlatformTag { get { return _platformTag; } }
     public static string NordWayTag { get { return _nordWayPointsTag; } }
     public static string UndergroundWayTag { get { return _undergroundWayPointsTag; } }
@@ -72,6 +79,8 @@ public class Storage : MonoBehaviour
     public static string NavPointsTag { get { return _navPointsTag; } }
     public static string WeaponPositionTag { get { return _weaponPosTag; } }
     public static string WeaponTag { get { return _weaponTag; } }
+    public static string Bullet1StartPositionTag { get { return _bullet1StartPositionTag; } }
+    public static string Bullet2StartPositionTag { get { return _bullet2StartPositionTag; } }
 
     #endregion
 
@@ -82,10 +91,10 @@ public class Storage : MonoBehaviour
         {
             if (item.CompareTag(NordWayTag))
                 _nordWay.Add(item.position);
-            
+
             else if (item.CompareTag(UndergroundWayTag))
                 _undergroundWay.Add(item.position);
-            
+
             else if (item.CompareTag(SandWayTag))
                 _sandWay.Add(item.position);
         }

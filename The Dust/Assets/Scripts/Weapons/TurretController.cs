@@ -11,7 +11,7 @@ public class TurretController : MonoBehaviour
     private float _distanceForDetection = 18f;
     private float _turretSearchSpeed = 0.10f; // Radian per second
     private float _turretRotateSpeed = 0.75f; // Radian per second
-    private float _bulletSpeed = 10f; // 600 Units per second
+    private float _bulletSpeed = 10f; // Units per second
     private int _bulletDamage = 5;
 
     private int _rateOfFire = 30; // Shots per second
@@ -20,7 +20,7 @@ public class TurretController : MonoBehaviour
 
     private BulletController _bulletCloneScript;
 
-    private SphereCollider _turretTriggerCollider;
+    private SphereCollider _turretTriggerDetectorCollider;
 
     private Transform _turretTransform;
     private Transform _playerTransform;
@@ -33,15 +33,15 @@ public class TurretController : MonoBehaviour
     void Start()
     {
         _turretTransform = GetComponent<Transform>();
-        _turretTriggerCollider = gameObject.GetComponent<SphereCollider>();
-        _turretTriggerCollider.radius = _distanceForDetection;
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        _bulletStartLeft = GameObject.Find("BulletStartLeft").transform;
-        _bulletStartRight = GameObject.Find("BulletStartRight").transform;
-        _bulletParentTransform = GameObject.FindGameObjectWithTag("DynamicallyCreatedTag").transform;
+        _turretTriggerDetectorCollider = gameObject.GetComponent<SphereCollider>();
+        _turretTriggerDetectorCollider.radius = _distanceForDetection;
+        _playerTransform = GameObject.FindGameObjectWithTag(Storage.PlayerTag).transform;
+        _bulletParentTransform = GameObject.FindGameObjectWithTag(Storage.DynamicallyCreatedTag).transform;
+        _bulletStartLeft = Storage.FindTransformInChildrenWithTag(gameObject, Storage.Bullet1StartPositionTag);
+        _bulletStartRight = Storage.FindTransformInChildrenWithTag(gameObject, Storage.Bullet2StartPositionTag);
         
         // Add own trigger-collider to Global List
-        GameObject.FindGameObjectWithTag("GlobalScript").GetComponent<Storage>().TriggerColliderList.Add(_turretTriggerCollider.GetHashCode());
+        GameObject.FindGameObjectWithTag(Storage.GlobalTag).GetComponent<Storage>().TriggerColliderList.Add(_turretTriggerDetectorCollider.GetHashCode());
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class TurretController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(Storage.PlayerTag))
         {
             Storage.ToLog(this, Storage.GetCallerName(), "Player DETECTED");
             _isPlayerDetected = true;
@@ -65,7 +65,7 @@ public class TurretController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(Storage.PlayerTag))
         {
             Storage.ToLog(this, Storage.GetCallerName(), "Player MISSED");
             _isPlayerDetected = false;
