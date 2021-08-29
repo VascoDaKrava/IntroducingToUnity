@@ -8,34 +8,40 @@ public class CreationGameObjectsAtRespawns : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _enemy;
     [SerializeField] private GameObject _boss;
-    private GameObject _charactersParent;
 
-    //private List<GameObject> _characters = new List<GameObject>();
+    private GameObject _temp;
+
+    private GameObject _charactersParent;
 
     private void Awake()
     {
         _charactersParent = GameObject.FindGameObjectWithTag("DynamicallyCreatedTag");
-        foreach (GameObject item in GameObject.FindGameObjectsWithTag("Resp"))
+        
+        foreach (Transform item in GameObject.FindGameObjectWithTag("Resp").GetComponentsInChildren(typeof(Transform)))
         {
-            //_characters.Add(item);
-
-            switch (item.name)
+            if (item.CompareTag(Storage.PlayerTag))
+                Instantiate(_player, item.position, Quaternion.identity, _charactersParent.transform);
+            
+            else if (item.CompareTag(Storage.NordWayTag))
             {
-                case "Player":
-                    GameObject.Instantiate(_player, item.transform.position, Quaternion.identity, _charactersParent.transform);
-                    break;
-
-                case "Enemy":
-                    GameObject.Instantiate(_enemy, item.transform.position, Quaternion.identity, _charactersParent.transform);
-                    break;
-
-                case "Boss":
-                    GameObject.Instantiate(_boss, item.transform.position, Quaternion.identity, _charactersParent.transform);
-                    break;
-
-                default:
-                    break;
+                _temp = Instantiate(_enemy, item.position, Quaternion.identity, _charactersParent.transform);
+                _temp.tag = Storage.NordWayTag;
             }
+
+            else if (item.CompareTag(Storage.UndergroundWayTag))
+            {
+                _temp = Instantiate(_enemy, item.position, Quaternion.identity, _charactersParent.transform);
+                _temp.tag = Storage.UndergroundWayTag;
+            }
+
+            else if (item.CompareTag(Storage.SandWayTag))
+            {
+                _temp = Instantiate(_enemy, item.position, Quaternion.identity, _charactersParent.transform);
+                _temp.tag = Storage.SandWayTag;
+            }
+
+            // BOSS
+
         }
     }
 }

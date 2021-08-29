@@ -12,10 +12,10 @@ public class PlayerInteraction : MonoBehaviour
     private LootClass _loot;
     private HealthController _healthController;
 
-    private List<LootClass.LootTypes> _inventory = new List<LootClass.LootTypes>();
+    private List<LootClass.LootTypes> _inventoryList = new List<LootClass.LootTypes>();
     private List<LootClass.WeaponNames> _weaponsList = new List<LootClass.WeaponNames>();
 
-    public List<LootClass.LootTypes> Inventory { get { return _inventory; } }
+    public List<LootClass.LootTypes> Inventory { get { return _inventoryList; } }
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,7 @@ public class PlayerInteraction : MonoBehaviour
         if (_weaponActive) LetFire();
     }
 
+
     private void getInput()
     {
         _isFire1 = Input.GetButton("Fire1");
@@ -48,11 +49,10 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log(Time.time + " Health\t\t: " + GetComponent<HealthController>().Health);
             Debug.Log(Time.time + " Armor\t\t: " + GetComponent<HealthController>().Armor);
             Debug.Log(Time.time + " Bullet\t\t: " + _quantityBullets);
-            Debug.Log(Time.time + " Key\t\t: " + _inventory.Contains(LootClass.LootTypes.Key));
-            Debug.Log(Time.time + " Weapon\t\t: " + _inventory.Contains(LootClass.LootTypes.Weapon));
+            Debug.Log(Time.time + " Key\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Key));
+            Debug.Log(Time.time + " Weapon\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Weapon));
             Debug.Log(Time.time + " \tC4\t: " + _weaponsList.Contains(LootClass.WeaponNames.C4));
             Debug.Log(Time.time + " \tAK74\t: " + _weaponsList.Contains(LootClass.WeaponNames.AK74));
-
         }
     }
 
@@ -62,11 +62,13 @@ public class PlayerInteraction : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("PlayerInteraction - Find " + other.name);
+        Storage.ToLog(this, Storage.GetCallerName(), "Find " + other.name);
     }
 
-
-
+    /// <summary>
+    /// Recieve pickUpedLootObj
+    /// </summary>
+    /// <param name="pickUpedLootObj">Link to pickuped Object</param>
     public void GetLoot(GameObject pickUpedLootObj)
     {
         _loot = pickUpedLootObj.GetComponent<LootModel>().Loot;
@@ -86,18 +88,18 @@ public class PlayerInteraction : MonoBehaviour
                 break;
 
             case LootClass.LootTypes.Key:
-                _inventory.Add(_loot.LootType);
+                _inventoryList.Add(_loot.LootType);
                 break;
 
             case LootClass.LootTypes.Weapon:
                 if (_loot.WeaponName == LootClass.WeaponNames.C4)
                 {
-                    if (!_inventory.Contains(_loot.LootType)) _inventory.Add(_loot.LootType);
+                    if (!_inventoryList.Contains(_loot.LootType)) _inventoryList.Add(_loot.LootType);
                     _weaponsList.Add(_loot.WeaponName);
                 }
                 else
                 {
-                    if (!_inventory.Contains(_loot.LootType)) _inventory.Add(_loot.LootType);
+                    if (!_inventoryList.Contains(_loot.LootType)) _inventoryList.Add(_loot.LootType);
                     if (!_weaponsList.Contains(_loot.WeaponName)) _weaponsList.Add(_loot.WeaponName);
                 }
                 break;
@@ -105,8 +107,46 @@ public class PlayerInteraction : MonoBehaviour
             default:
                 break;
         }
-
-        Debug.Log("PlayerInteraction - Get " + pickUpedLootObj.name);
+        
+        Storage.ToLog(this, Storage.GetCallerName(), "Get " + pickUpedLootObj.name);
         Destroy(pickUpedLootObj);
+    }
+
+    /// <summary>
+    /// Remove item from inventory
+    /// </summary>
+    /// <param name="item">Loot</param>
+    public void RemoveFromInventory(LootClass.LootTypes item)
+    {
+        _inventoryList.Remove(item);
+    }
+
+    /// <summary>
+    /// Remove item from inventory
+    /// </summary>
+    /// <param name="item">Weapon</param>
+    public void RemoveFromInventory(LootClass.WeaponNames item)
+    {
+        _weaponsList.Remove(item);
+    }
+
+    /// <summary>
+    /// Check item in inventory
+    /// </summary>
+    /// <param name="item">Loot</param>
+    /// <returns></returns>
+    public bool IsInInventory(LootClass.LootTypes item)
+    {
+        return _inventoryList.Contains(item);
+    }
+
+    /// <summary>
+    /// Check item in inventory
+    /// </summary>
+    /// <param name="item">Weapon</param>
+    /// <returns></returns>
+    public bool IsInInventory(LootClass.WeaponNames item)
+    {
+        return _weaponsList.Contains(item);
     }
 }

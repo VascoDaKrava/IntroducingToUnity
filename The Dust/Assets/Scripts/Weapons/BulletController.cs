@@ -26,17 +26,14 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_triggerColliderList.Contains(other.GetHashCode()))
-        {
-            Debug.Log("BulletController - Skip trigger-collider " + other.name);
-            return;
-        }
+        if (_triggerColliderList.Contains(other.GetHashCode())) return;
 
-        Debug.Log("BulletController - Bullet hit the target " + other.name);
+        Storage.ToLog(this, Storage.GetCallerName(), "Hit " + other.name);
 
+        // Apply Damage
         if (other.GetComponent<HealthController>() != null)
             other.GetComponent<HealthController>().ChangeHealth(-BulletDamage);
-               
+
         Destroy(_bulletTransform.gameObject);
     }
 }
