@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3275327483363648605}
   - component: {fileID: 8979026299384242566}
   - component: {fileID: 4823696538064740144}
-  - component: {fileID: 2353514527186661957}
+  - component: {fileID: 7870982725399004526}
   m_Layer: 0
   m_Name: 50-cal_Bullet
   m_TagString: Untagged
@@ -63,7 +63,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2353514527186661957
+--- !u!114 &7870982725399004526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4394750291745366717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a057d7d19076b4b49b67958fb8ee6dc1, type: 3}
+  m_Script: {fileID: 11500000, guid: d3937f49e66374143ae14588082c255c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4509807341347227382

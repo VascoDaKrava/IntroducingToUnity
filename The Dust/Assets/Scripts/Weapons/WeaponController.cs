@@ -17,7 +17,7 @@ public class WeaponController : MonoBehaviour
     private Transform _bulletStartTransform;
     private Transform _bulletParentTransform;
 
-    private BulletController _bulletCloneScript;
+    private BulletControllerRay _bulletCloneScript;
 
     public bool ReadyForFire { get { return _readyForFire; } }
 
@@ -43,7 +43,7 @@ public class WeaponController : MonoBehaviour
             return;
         }
 
-        _bulletCloneScript = Instantiate(_bullet, _bulletStartTransform.position, _bulletStartTransform.rotation, _bulletParentTransform).GetComponent<BulletController>();
+        _bulletCloneScript = Instantiate(_bullet, _bulletStartTransform.position, _bulletStartTransform.rotation, _bulletParentTransform).GetComponent<BulletControllerRay>();
         _bulletCloneScript.BulletSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;
 
@@ -53,7 +53,7 @@ public class WeaponController : MonoBehaviour
 
         _readyForFire = false;
 
-        StartCoroutine(WaitForNextShot(60 / _rateOfFire));
+        StartCoroutine(WaitForNextShot(60f / _rateOfFire));
     }
 
     /// <summary>

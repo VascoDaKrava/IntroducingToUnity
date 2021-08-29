@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private bool _isFire1;
-    private bool _isFire2;
+    private bool _isFire1 = false;
+    private bool _isFire2 = false;
+    private bool _showStat = false;
     private bool _weaponActive = false;
 
     private int _quantityBullets = 0;
@@ -47,22 +48,9 @@ public class PlayerInteraction : MonoBehaviour
     {
         getInput();
         if (_weaponActive) LetFire();
-        if (_isFire2) LetFire();
-    }
 
-
-    private void getInput()
-    {
-        _isFire1 = Input.GetButton("Fire1");
-        _isFire2 = Input.GetButtonDown("Fire2");
-    }
-
-    private void LetFire()
-    {
-        if (_isFire1) Fire1();
-        if (_isFire2)
+        if (_showStat)
         {
-            Fire2();
             Debug.Log(Time.time + " Health\t\t: " + GetComponent<HealthController>().Health);
             Debug.Log(Time.time + " Armor\t\t: " + GetComponent<HealthController>().Armor);
             Debug.Log(Time.time + " Bullet\t\t: " + _quantityBullets);
@@ -72,6 +60,20 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log(Time.time + " \tAK74\t: " + _weaponsList.Contains(LootClass.WeaponNames.AK74));
             Debug.Log(Time.time + " \tAK74 clip fill\t: " + _weaponController.ClipFullness);
         }
+    }
+
+
+    private void getInput()
+    {
+        _isFire1 = Input.GetButton("Fire1");
+        _isFire2 = Input.GetButtonDown("Fire2");
+        _showStat = Input.GetButton("ShowStat");
+    }
+
+    private void LetFire()
+    {
+        if (_isFire1) Fire1();
+        if (_isFire2) Fire2();
     }
 
     private void Fire1()
@@ -136,9 +138,9 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     if (!_inventoryList.Contains(_loot.LootType)) _inventoryList.Add(_loot.LootType);
                     if (!_weaponsList.Contains(_loot.WeaponName)) _weaponsList.Add(_loot.WeaponName);
-                    
+
                     _weaponActive = true;
-                    
+
                     _weaponObj = Storage.FindTransformInChildrenWithTag(pickUpedLootObj, Storage.WeaponTag).gameObject;
 
                     _weaponController = _weaponObj.GetComponent<WeaponController>();

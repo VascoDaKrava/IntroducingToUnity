@@ -18,7 +18,7 @@ public class TurretController : MonoBehaviour
 
     private string _fireMethodName = "Fire"; // Name of fire-method for Invoke
 
-    private BulletController _bulletCloneScript;
+    private BulletControllerRay _bulletCloneScript;
 
     private SphereCollider _turretTriggerDetectorCollider;
 
@@ -103,12 +103,12 @@ public class TurretController : MonoBehaviour
     private void Fire()
     {
         Storage.ToLog(this, Storage.GetCallerName(), "Left gun");
-        _bulletCloneScript = Instantiate(_bullet, _bulletStartLeft.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletController>();
+        _bulletCloneScript = Instantiate(_bullet, _bulletStartLeft.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletControllerRay>();
         _bulletCloneScript.BulletSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;
 
         Storage.ToLog(this, Storage.GetCallerName(), "Right gun");
-        _bulletCloneScript = Instantiate(_bullet, _bulletStartRight.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletController>();
+        _bulletCloneScript = Instantiate(_bullet, _bulletStartRight.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletControllerRay>();
         _bulletCloneScript.BulletSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;
     }
