@@ -34,11 +34,6 @@ public class PlayerInteraction : MonoBehaviour
         _storage.TriggerColliderList.Add(GetComponent<BoxCollider>().GetHashCode());
 
         _weaponPositionTransform = Storage.FindTransformInChildrenWithTag(gameObject, Storage.WeaponPositionTag);
-        //foreach (Transform item in GetComponentsInChildren(typeof(Transform)))
-        //{
-        //    if (item.CompareTag(Storage.WeaponPositionTag))
-        //        _weaponPositionTransform = item;
-        //}
 
         _healthController = GetComponent<HealthController>();
     }

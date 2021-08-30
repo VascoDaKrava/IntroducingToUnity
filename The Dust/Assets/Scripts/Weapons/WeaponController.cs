@@ -44,7 +44,7 @@ public class WeaponController : MonoBehaviour
         }
 
         _bulletCloneScript = Instantiate(_bullet, _bulletStartTransform.position, _bulletStartTransform.rotation, _bulletParentTransform).GetComponent<BulletControllerRay>();
-        _bulletCloneScript.BulletSpeed = _bulletSpeed;
+        _bulletCloneScript.BulletStartSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;
 
         _clipFullness--;

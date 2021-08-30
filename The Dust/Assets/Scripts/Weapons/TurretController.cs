@@ -11,8 +11,10 @@ public class TurretController : MonoBehaviour
     private float _distanceForDetection = 18f;
     private float _turretSearchSpeed = 0.10f; // Radian per second
     private float _turretRotateSpeed = 0.75f; // Radian per second
+    
     private float _bulletSpeed = 10f; // Units per second
     private int _bulletDamage = 5;
+    private float _bulletLength = 0.012f;
 
     private int _rateOfFire = 30; // Shots per second
 
@@ -104,12 +106,14 @@ public class TurretController : MonoBehaviour
     {
         Storage.ToLog(this, Storage.GetCallerName(), "Left gun");
         _bulletCloneScript = Instantiate(_bullet, _bulletStartLeft.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletControllerRay>();
-        _bulletCloneScript.BulletSpeed = _bulletSpeed;
+        _bulletCloneScript.BulletStartSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;
+        _bulletCloneScript.BulletLength = _bulletLength; 
 
         Storage.ToLog(this, Storage.GetCallerName(), "Right gun");
         _bulletCloneScript = Instantiate(_bullet, _bulletStartRight.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletControllerRay>();
-        _bulletCloneScript.BulletSpeed = _bulletSpeed;
+        _bulletCloneScript.BulletStartSpeed = _bulletSpeed;
         _bulletCloneScript.BulletDamage = _bulletDamage;
+        _bulletCloneScript.BulletLength = _bulletLength;
     }
 }

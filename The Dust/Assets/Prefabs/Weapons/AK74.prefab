@@ -539,9 +539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bullet: {fileID: 4394750291745366717, guid: 603beddc2ba9e454e8e0877b3e0aea3b, type: 3}
-  _rateOfFire: 100
-  _bulletSpeed: 1
-  _bulletDamage: 10
+  _rateOfFire: 180
+  _bulletSpeed: 50
+  _bulletDamage: 20
 --- !u!65 &1098304887227729379
 BoxCollider:
   m_ObjectHideFlags: 0
