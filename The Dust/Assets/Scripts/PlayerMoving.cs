@@ -11,8 +11,8 @@ public class PlayerMoving : MonoBehaviour
     private Rigidbody _playerRigidbody;
     private Transform _playerTransform;
     private Transform _cameraTransform;
-    private int _speedWalk = 2;
-    private int _speedRun = 5;
+    private float _speedWalk = 2f;
+    private float _speedRun = 5f;
     private bool _isSpeedUp;
     private bool _isJump;
     
@@ -26,7 +26,7 @@ public class PlayerMoving : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         GetInput();
         CameraRotate();
@@ -39,8 +39,9 @@ public class PlayerMoving : MonoBehaviour
     private void GetInput()
     {
         _inputMoveDirection.x = Input.GetAxis("Horizontal");
+        _inputMoveDirection.y = 0f; 
         _inputMoveDirection.z = Input.GetAxis("Vertical");
-        _inputMoveDirection.Normalize();
+        //_inputMoveDirection.Normalize();
 
         _inputLookDirection.x += Input.GetAxis("Mouse X");
         _inputLookDirection.y -= Input.GetAxis("Mouse Y");
@@ -68,6 +69,7 @@ public class PlayerMoving : MonoBehaviour
     {
         _playerTransform.rotation = Quaternion.Euler(0f, _inputLookDirection.x, 0f);
 
-        _playerTransform.Translate(_inputMoveDirection * Time.deltaTime * (_isSpeedUp ? _speedRun : _speedWalk) );
+        //_playerTransform.Translate(_inputMoveDirection * Time.deltaTime * (_isSpeedUp ? _speedRun : _speedWalk) );
+        _playerRigidbody.AddForce(_inputMoveDirection * (_isSpeedUp ? _speedRun : _speedWalk) * 10, ForceMode.Impulse);
     }
 }

@@ -33,11 +33,11 @@ public class BulletControllerRay : MonoBehaviour
 
     private void Update()
     {
-        CheckHit();
     }
 
     private void FixedUpdate()
     {
+        CheckHit();
         //_bulletTransform.Translate(Vector3.forward * BulletSpeed * Time.deltaTime);
     }
 
