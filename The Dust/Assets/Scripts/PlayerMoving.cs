@@ -42,10 +42,9 @@ public class PlayerMoving : MonoBehaviour
         _inputMoveDirection.x = Input.GetAxis("Horizontal");
         _inputMoveDirection.y = 0f;
         _inputMoveDirection.z = Input.GetAxis("Vertical");
-        _inputMoveDirection.Normalize();
 
         _yRot = Input.GetAxisRaw("Mouse X");
-        
+
         _inputLookDirection.x += Input.GetAxis("Mouse X");
         _inputLookDirection.y -= Input.GetAxis("Mouse Y");
 
@@ -70,8 +69,19 @@ public class PlayerMoving : MonoBehaviour
     /// </summary>
     private void PlayerMove()
     {
+        //float deltaX = _inputMoveDirection.x * (_isSpeedUp ? _speedRun : _speedWalk) * Time.deltaTime;
+        //float deltaZ = _inputMoveDirection.z * (_isSpeedUp ? _speedRun : _speedWalk) * Time.deltaTime;
+        //float alfaRad = Mathf.Deg2Rad * (90 - _playerRigidbody.rotation.y);
+        //float Xs = Mathf.Sin(alfaRad) * deltaX;
+        //float Zs = Mathf.Cos(Mathf.Deg2Rad * _playerRigidbody.rotation.y);
+        //Vector3 As = new Vector3(Xs, 0f, Zs);
+        //_playerRigidbody.MovePosition(_playerRigidbody.position + As);
         
-        _playerRigidbody.MovePosition(_playerRigidbody.position + _inputMoveDirection * (_isSpeedUp ? _speedRun : _speedWalk) * Time.deltaTime);
+        if (_inputMoveDirection != Vector3.zero)
+            _playerRigidbody.MovePosition(_playerRigidbody.position +
+                (_playerTransform.right * _inputMoveDirection.x + _playerTransform.forward * _inputMoveDirection.z).normalized *
+                (_isSpeedUp ? _speedRun : _speedWalk) * Time.deltaTime);
+        
         _playerRigidbody.MoveRotation(_playerRigidbody.rotation * Quaternion.Euler(0f, _yRot, 0f));
     }
 }
