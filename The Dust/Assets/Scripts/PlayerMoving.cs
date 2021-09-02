@@ -12,20 +12,20 @@ public class PlayerMoving : MonoBehaviour
     private Rigidbody _playerRigidbody;
     private Transform _playerTransform;
     private Transform _cameraTransform;
+    private float _yRot;
     private float _speedWalk = 2f;
     private float _speedRun = 5f;
-    private float _yRot;
     private float _jumpCheckBoxY = 0.1f;
-    private float _jumpCheckBoxX = 0.4f;
+    private float _jumpCheckBoxXZ = 0.4f;
     private float _jumpImpulseScale = 3f;
-    private int _jumpCheckLayerMask = 1 << 0;
+    private int _jumpCheckLayerMask = 1 << 3;// Layer 3 : Ready for jump
     private bool _isSpeedUp;
     private bool _isJump;
 
     // Start is called before the first frame update
     void Start()
     {
-        _grounCheckBoxHalfSize = new Vector3(_jumpCheckBoxX / 2, _jumpCheckBoxY / 2, _jumpCheckBoxX / 2);
+        _grounCheckBoxHalfSize = new Vector3(_jumpCheckBoxXZ / 2, _jumpCheckBoxY / 2, _jumpCheckBoxXZ / 2);
         _playerRigidbody = GetComponent<Rigidbody>();
         _playerTransform = GetComponent<Transform>();
         _cameraTransform = _camera.transform;

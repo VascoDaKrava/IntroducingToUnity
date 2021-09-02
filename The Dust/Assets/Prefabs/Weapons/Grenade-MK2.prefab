@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 3187266828565232864}
   - component: {fileID: 855548701535684650}
   - component: {fileID: 2777807517349174867}
+  - component: {fileID: 8868135626259164628}
   m_Layer: 0
   m_Name: Grenade-MK2
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,3 +97,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.053827494, y: 0.06400931, z: 0.111206114}
   m_Center: {x: 0, y: -0.005090903, z: 0.0121994885}
+--- !u!114 &8868135626259164628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215823958935038463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e06cf6a7393881429ac541178ee95c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

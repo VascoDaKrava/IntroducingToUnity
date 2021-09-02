@@ -19,7 +19,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private LootClass _loot;
     private HealthController _healthController;
-    private Storage _storage;
 
     private List<LootClass.LootTypes> _inventoryList = new List<LootClass.LootTypes>();
     private List<LootClass.WeaponNames> _weaponsList = new List<LootClass.WeaponNames>();
@@ -29,10 +28,6 @@ public class PlayerInteraction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Add own trigger-collider to Global List
-        _storage = GameObject.FindGameObjectWithTag("GlobalScript").GetComponent<Storage>();
-        _storage.TriggerColliderList.Add(GetComponent<BoxCollider>().GetHashCode());
-
         _weaponPositionTransform = Storage.FindTransformInChildrenWithTag(gameObject, Storage.WeaponPositionTag);
 
         _healthController = GetComponent<HealthController>();
@@ -46,14 +41,14 @@ public class PlayerInteraction : MonoBehaviour
 
         if (_showStat)
         {
-            Debug.Log(Time.time + " Health\t\t: " + GetComponent<HealthController>().Health);
-            Debug.Log(Time.time + " Armor\t\t: " + GetComponent<HealthController>().Armor);
+            Debug.Log(Time.time + " Health\t\t: " + GetComponent<HealthController>()?.Health);
+            Debug.Log(Time.time + " Armor\t\t: " + GetComponent<HealthController>()?.Armor);
             Debug.Log(Time.time + " Bullet\t\t: " + _quantityBullets);
             Debug.Log(Time.time + " Key\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Key));
             Debug.Log(Time.time + " Weapon\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Weapon));
             Debug.Log(Time.time + " \tC4\t: " + _weaponsList.Contains(LootClass.WeaponNames.C4));
             Debug.Log(Time.time + " \tAK74\t: " + _weaponsList.Contains(LootClass.WeaponNames.AK74));
-            Debug.Log(Time.time + " \tAK74 clip fill\t: " + _weaponController.ClipFullness);
+            Debug.Log(Time.time + " \tAK74 clip fill\t: " + _weaponController?.ClipFullness);
         }
     }
 
@@ -116,7 +111,7 @@ public class PlayerInteraction : MonoBehaviour
                 break;
 
             case LootClass.LootTypes.Armor:
-                _healthController.ChangeArmor(_loot.LootPower);
+                _healthController.AddArmor(_loot.LootPower);
                 break;
 
             case LootClass.LootTypes.Key:

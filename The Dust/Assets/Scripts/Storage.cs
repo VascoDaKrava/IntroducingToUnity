@@ -5,14 +5,22 @@ using UnityEngine;
 
 public class Storage : MonoBehaviour
 {
-    #region For trigger-colliders
+    private void Awake()
+    {
+        // Search NavPoints
+        foreach (Transform item in GameObject.FindGameObjectWithTag(_navPointsTag).GetComponentsInChildren(typeof(Transform)))
+        {
+            if (item.CompareTag(NordWayTag))
+                _nordWay.Add(item.position);
 
-    // Colliders, that are triggers. For example, they are can not get damaged.
-    private List<int> _triggerColliderList = new List<int>();
-    public List<int> TriggerColliderList { get { return _triggerColliderList; } }
+            else if (item.CompareTag(UndergroundWayTag))
+                _undergroundWay.Add(item.position);
 
-    #endregion
-
+            else if (item.CompareTag(SandWayTag))
+                _sandWay.Add(item.position);
+        }
+    }
+    
     #region For Navigation
 
     private List<Vector3> _nordWay = new List<Vector3>();
@@ -84,21 +92,9 @@ public class Storage : MonoBehaviour
 
     #endregion
 
-    private void Awake()
-    {
-        // Search NavPoints
-        foreach (Transform item in GameObject.FindGameObjectWithTag(_navPointsTag).GetComponentsInChildren(typeof(Transform)))
-        {
-            if (item.CompareTag(NordWayTag))
-                _nordWay.Add(item.position);
+    #region Static for Weapons
 
-            else if (item.CompareTag(UndergroundWayTag))
-                _undergroundWay.Add(item.position);
-
-            else if (item.CompareTag(SandWayTag))
-                _sandWay.Add(item.position);
-        }
-    }
+    #endregion
 
     #region Static methods
 
