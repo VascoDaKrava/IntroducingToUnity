@@ -71,6 +71,7 @@ public class Storage : MonoBehaviour
     private static string _bullet1StartPositionTag = "BulletStart1";// 15
     private static string _bullet2StartPositionTag = "BulletStart2";// 16
     private static string _playerHeadTag = "PlayerHead";// 17
+    private static string _enemyNavigatedTag = "EnemyNavigated";// 18
     
     private static string _untagged = "Untagged";
     private static string _mainCamera = "MainCamera";
@@ -93,6 +94,7 @@ public class Storage : MonoBehaviour
     public static string Bullet1StartPositionTag { get { return _bullet1StartPositionTag; } }
     public static string Bullet2StartPositionTag { get { return _bullet2StartPositionTag; } }
     public static string PlayerHeadTag { get { return _playerHeadTag; } }
+    public static string EnemyNavigatedTag { get { return _enemyNavigatedTag; } }
 
     #endregion
 

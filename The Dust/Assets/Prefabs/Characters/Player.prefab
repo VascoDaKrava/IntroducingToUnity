@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2606a3d45745e47859197ef5e5c1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _grenadePrefab: {fileID: 1215823958935038463, guid: 8439ba6592b62064d87eb781e7ccdf8d, type: 3}
 --- !u!114 &8233500220580792443
 MonoBehaviour:
   m_ObjectHideFlags: 0

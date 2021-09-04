@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8769032429369887003}
   m_Layer: 0
   m_Name: DirectedCube
-  m_TagString: Untagged
+  m_TagString: EnemyNavigated
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

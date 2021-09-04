@@ -20,7 +20,5 @@ public class StretchGrenade : MonoBehaviour
         _grenade.ExplosionForce = _pushForce;
 
         _grenade.LetBoom(transform.parent.gameObject);
-
-        //Destroy(transform.parent.gameObject);
     }
 }
