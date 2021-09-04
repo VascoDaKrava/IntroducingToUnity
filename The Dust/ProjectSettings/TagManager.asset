@@ -21,6 +21,7 @@ TagManager:
   - Weapon
   - BulletStart1
   - BulletStart2
+  - PlayerHead
   layers:
   - Default
   - TransparentFX

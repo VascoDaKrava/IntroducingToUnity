@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class PlayerMoving : MonoBehaviour
 {
-    [SerializeField] private Camera _camera;
-
     private Vector3 _inputMoveDirection;
-    private Vector3 _inputLookDirection;
+    private Vector3 _inputMouseDirection;
     private Vector3 _grounCheckBoxHalfSize;
     private Rigidbody _playerRigidbody;
     private Transform _playerTransform;
-    private Transform _cameraTransform;
+    private Transform _headTransform;
     private float _yRot;
     private float _speedWalk = 2f;
     private float _speedRun = 5f;
@@ -28,15 +26,15 @@ public class PlayerMoving : MonoBehaviour
         _grounCheckBoxHalfSize = new Vector3(_jumpCheckBoxXZ / 2, _jumpCheckBoxY / 2, _jumpCheckBoxXZ / 2);
         _playerRigidbody = GetComponent<Rigidbody>();
         _playerTransform = GetComponent<Transform>();
-        _cameraTransform = _camera.transform;
-        _inputLookDirection = _cameraTransform.eulerAngles;
+        _headTransform = Storage.FindTransformInChildrenWithTag(gameObject, Storage.PlayerHeadTag);
+        _inputMouseDirection = _headTransform.eulerAngles;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         GetInput();
-        CameraRotate();
+        HeadRotate();
         PlayerMove();
         PlayerJump();
     }
@@ -52,8 +50,8 @@ public class PlayerMoving : MonoBehaviour
 
         _yRot = Input.GetAxisRaw("Mouse X");
 
-        _inputLookDirection.x += Input.GetAxis("Mouse X");
-        _inputLookDirection.y -= Input.GetAxis("Mouse Y");
+        _inputMouseDirection.x += Input.GetAxis("Mouse X");
+        _inputMouseDirection.y -= Input.GetAxis("Mouse Y");
 
         _isSpeedUp = Input.GetButton("SpeedUp");
 
@@ -61,14 +59,14 @@ public class PlayerMoving : MonoBehaviour
     }
 
     /// <summary>
-    /// Change cameras angles
+    /// Change head angles
     /// </summary>
-    private void CameraRotate()
+    private void HeadRotate()
     {
-        if (_inputLookDirection.y > 65) _inputLookDirection.y = 65;
-        if (_inputLookDirection.y < -65) _inputLookDirection.y = -65;
+        if (_inputMouseDirection.y > 65) _inputMouseDirection.y = 65;
+        if (_inputMouseDirection.y < -65) _inputMouseDirection.y = -65;
 
-        _cameraTransform.rotation = Quaternion.Euler(_inputLookDirection.y, _inputLookDirection.x, 0f);
+        _headTransform.rotation = Quaternion.Euler(_inputMouseDirection.y, _inputMouseDirection.x, 0f);
     }
 
     /// <summary>
