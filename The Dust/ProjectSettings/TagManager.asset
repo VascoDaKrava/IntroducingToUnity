@@ -22,6 +22,7 @@ TagManager:
   - BulletStart1
   - BulletStart2
   - PlayerHead
+  - EnemyNavigated
   layers:
   - Default
   - TransparentFX

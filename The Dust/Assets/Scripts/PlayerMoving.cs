@@ -20,6 +20,8 @@ public class PlayerMoving : MonoBehaviour
     private bool _isSpeedUp;
     private bool _isJump;
 
+    //public float SpeedRun { get { return _speedRun; } }
+
     // Start is called before the first frame update
     void Start()
     {
