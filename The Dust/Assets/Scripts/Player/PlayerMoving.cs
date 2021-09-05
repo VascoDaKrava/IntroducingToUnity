@@ -15,12 +15,10 @@ public class PlayerMoving : MonoBehaviour
     private float _speedRun = 5f;
     private float _jumpCheckBoxY = 0.1f;
     private float _jumpCheckBoxXZ = 0.4f;
-    private float _jumpImpulseScale = 3f;
-    private int _jumpCheckLayerMask = 1 << 3;// Layer 3 : Ready for jump
+    private float _jumpImpulseScale = 2.5f;
+    private int _jumpCheckLayerMask = 1 << 3; // Layer 3 : Ready for jump
     private bool _isSpeedUp;
     private bool _isJump;
-
-    //public float SpeedRun { get { return _speedRun; } }
 
     // Start is called before the first frame update
     void Start()

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4256020420064023571}
   - component: {fileID: 7990596298086356038}
   - component: {fileID: 5139750171307908073}
+  - component: {fileID: 9194583136974356910}
   - component: {fileID: 8769032429369887003}
   m_Layer: 0
   m_Name: DirectedCube
@@ -70,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f543d8381731b324d96918983f07c143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _agentState: 0
 --- !u!114 &5139750171307908073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +85,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 100
+--- !u!114 &9194583136974356910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821672196478773305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49799759c78a51b47a4855e8ed0508e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &8769032429369887003
 CapsuleCollider:
   m_ObjectHideFlags: 0

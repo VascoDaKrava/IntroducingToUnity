@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8265254256526936760}
   - component: {fileID: 8484996270113571298}
   - component: {fileID: 412542491729876339}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Head
   m_TagString: PlayerHead
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4638492160566374397}
   - component: {fileID: 4845984427842856680}
   - component: {fileID: 7996543629443209398}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4725967902687580475}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WeaponPosition
   m_TagString: WeaponPositionTag
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 7247799878812974661}
   - component: {fileID: 8982267420323582140}
   - component: {fileID: 8233500220580792443}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

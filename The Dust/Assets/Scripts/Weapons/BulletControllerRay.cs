@@ -21,8 +21,6 @@ public class BulletControllerRay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //BulletStartSpeed = 1f;
-
         _bulletTransform = gameObject.transform;
         _bulletRigidbody = gameObject.GetComponent<Rigidbody>();
 
@@ -31,14 +29,9 @@ public class BulletControllerRay : MonoBehaviour
         _bulletRigidbody.AddForce(_bulletTransform.forward * BulletStartSpeed, ForceMode.VelocityChange);
     }
 
-    private void Update()
-    {
-    }
-
     private void FixedUpdate()
     {
         CheckHit();
-        //_bulletTransform.Translate(Vector3.forward * BulletSpeed * Time.deltaTime);
     }
 
     private void CheckHit()
