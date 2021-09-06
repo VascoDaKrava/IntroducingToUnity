@@ -19,6 +19,8 @@ public class TurretController : MonoBehaviour
     private int _rateOfFire = 30; // Shots per second
 
     private string _fireMethodName = "Fire"; // Name of fire-method for Invoke
+    private string _animationStandby = "Turret-Standby";
+    private string _animationAim = "Turret-Alarm";
 
     private BulletControllerRay _bulletCloneScript;
 
@@ -31,6 +33,8 @@ public class TurretController : MonoBehaviour
     private Transform _bulletStartRight;
     private Transform _bulletParentTransform;
 
+    private Animation _animation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +45,7 @@ public class TurretController : MonoBehaviour
         _bulletParentTransform = GameObject.FindGameObjectWithTag(Storage.DynamicallyCreatedTag).transform;
         _bulletStartLeft = Storage.FindTransformInChildrenWithTag(gameObject, Storage.Bullet1StartPositionTag);
         _bulletStartRight = Storage.FindTransformInChildrenWithTag(gameObject, Storage.Bullet2StartPositionTag);
+        _animation = GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -73,6 +78,7 @@ public class TurretController : MonoBehaviour
 
     private void StandbyMode()
     {
+        _animation.Play(_animationStandby);
         _turretTransform.rotation = Quaternion.Euler(0, _turretTransform.rotation.eulerAngles.y + _turretSearchSpeed, 0);
         if (IsInvoking(_fireMethodName))
             CancelInvoke();
@@ -80,6 +86,7 @@ public class TurretController : MonoBehaviour
 
     private void AimingMode()
     {
+        _animation.Play(_animationAim);
         _turretTransform.rotation = Quaternion.LookRotation(Vector3.RotateTowards(_turretTransform.forward,
             _playerTransform.position - _turretTransform.position,
             _turretRotateSpeed * Time.deltaTime,

@@ -7,9 +7,9 @@ public class PlayerCatching : MonoBehaviour
     private NavMoving _navigationScript;
     private RaycastHit _hit;
     private float _seeDistance = 20f;
-    private float _seeSphereRadius = 5f;
+    private float _seeSphereRadius = 1f;
     private float _shootingDistance = 15f;
-    private int _playerLayer = 1 << 6; // Player have layer #6
+    private int _hitLayer = ~0;
     private bool _isPlayerOnPursuit = false;
 
     // Start is called before the first frame update
@@ -26,9 +26,10 @@ public class PlayerCatching : MonoBehaviour
             transform.forward,
             out _hit,
             _seeDistance,
-            _playerLayer,
+            _hitLayer,
             QueryTriggerInteraction.Ignore))
         {
+            if (!_hit.transform.CompareTag(Storage.PlayerTag)) return;
             if (_hit.distance < _shootingDistance) Fire();
             _navigationScript.AgentState = NavMoving.EnemyState.Pursuit;
             _isPlayerOnPursuit = true;
