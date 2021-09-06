@@ -17,6 +17,8 @@ public class PlayerInteraction : MonoBehaviour
     private int _quantityGrenadesInLoot = 3;
     private int _quantityGrenades = 0;
 
+    private int _aidEffectTime = 4; // How much seconds aid work (add 1/_aidEffectTime of own power per second)
+
     private bool _isFire1 = false;
     private bool _isFire2 = false;
     private bool _showStat = false;
@@ -134,8 +136,8 @@ public class PlayerInteraction : MonoBehaviour
 
         switch (_loot.LootType)
         {
-            case LootClass.LootTypes.Aim:
-                _healthController.ChangeHealth(_loot.LootPower);
+            case LootClass.LootTypes.Aid:
+                StartCoroutine(Aid(_loot.LootPower, _aidEffectTime));
                 break;
 
             case LootClass.LootTypes.Ammo:
@@ -234,5 +236,25 @@ public class PlayerInteraction : MonoBehaviour
     public bool IsInInventory(LootClass.WeaponNames item)
     {
         return _weaponsList.Contains(item);
+    }
+
+    /// <summary>
+    /// Adding health with a volume of "power" several times (one per second)
+    /// </summary>
+    /// <param name="power"></param>
+    /// <param name="times"></param>
+    /// <returns></returns>
+    IEnumerator Aid(int power, int times)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            _healthController.ChangeHealth(power / times);
+            yield return StartCoroutine(WaitOneSec());
+        }
+    }
+
+    IEnumerator WaitOneSec()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }

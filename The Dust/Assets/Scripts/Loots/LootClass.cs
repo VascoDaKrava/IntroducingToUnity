@@ -5,7 +5,7 @@ public class LootClass
     public enum LootTypes
     {
         NULL,
-        Aim,
+        Aid,
         Ammo,
         Armor,
         Key,
@@ -54,7 +54,7 @@ public class LootClass
     }
 
     /// <summary>
-    /// Loot for aim, armor
+    /// Loot for aid, armor
     /// </summary>
     /// <param name="loot"></param>
     /// <param name="power"></param>
