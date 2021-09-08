@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private bool _isFire1;
-    private bool _isFire2;
-    private bool _weaponActive = true;
+    private bool _isFire1 = false;
+    private bool _isFire2 = false;
+    private bool _showStat = false;
+    private bool _weaponActive = false;
+
     private int _quantityBullets = 0;
+
+    private Transform _weaponPositionTransform;
+
+    private GameObject _weaponObj;
+
+    private WeaponController _weaponController;
 
     private LootClass _loot;
     private HealthController _healthController;
+    private Storage _storage;
 
     private List<LootClass.LootTypes> _inventoryList = new List<LootClass.LootTypes>();
     private List<LootClass.WeaponNames> _weaponsList = new List<LootClass.WeaponNames>();
@@ -21,7 +30,10 @@ public class PlayerInteraction : MonoBehaviour
     void Start()
     {
         // Add own trigger-collider to Global List
-        GameObject.FindGameObjectWithTag("GlobalScript").GetComponent<Storage>().TriggerColliderList.Add(GetComponent<BoxCollider>().GetHashCode());
+        _storage = GameObject.FindGameObjectWithTag("GlobalScript").GetComponent<Storage>();
+        _storage.TriggerColliderList.Add(GetComponent<BoxCollider>().GetHashCode());
+
+        _weaponPositionTransform = Storage.FindTransformInChildrenWithTag(gameObject, Storage.WeaponPositionTag);
 
         _healthController = GetComponent<HealthController>();
     }
@@ -31,21 +43,9 @@ public class PlayerInteraction : MonoBehaviour
     {
         getInput();
         if (_weaponActive) LetFire();
-    }
 
-
-    private void getInput()
-    {
-        _isFire1 = Input.GetButton("Fire1");
-        _isFire2 = Input.GetButtonDown("Fire2");
-    }
-
-    private void LetFire()
-    {
-        if (_isFire1) Debug.Log("Fire 1");
-        if (_isFire2)
+        if (_showStat)
         {
-            Debug.Log("Fire 2");
             Debug.Log(Time.time + " Health\t\t: " + GetComponent<HealthController>().Health);
             Debug.Log(Time.time + " Armor\t\t: " + GetComponent<HealthController>().Armor);
             Debug.Log(Time.time + " Bullet\t\t: " + _quantityBullets);
@@ -53,7 +53,34 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log(Time.time + " Weapon\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Weapon));
             Debug.Log(Time.time + " \tC4\t: " + _weaponsList.Contains(LootClass.WeaponNames.C4));
             Debug.Log(Time.time + " \tAK74\t: " + _weaponsList.Contains(LootClass.WeaponNames.AK74));
+            Debug.Log(Time.time + " \tAK74 clip fill\t: " + _weaponController.ClipFullness);
         }
+    }
+
+
+    private void getInput()
+    {
+        _isFire1 = Input.GetButton("Fire1");
+        _isFire2 = Input.GetButtonDown("Fire2");
+        _showStat = Input.GetButton("ShowStat");
+    }
+
+    private void LetFire()
+    {
+        if (_isFire1) Fire1();
+        if (_isFire2) Fire2();
+    }
+
+    private void Fire1()
+    {
+        Storage.ToLog(this, Storage.GetCallerName(), "Try Fire 1");
+        if (_weaponController.ReadyForFire)
+            _weaponController.Fire();
+    }
+
+    private void Fire2()
+    {
+        Debug.Log("Fire 2");
     }
 
     /// <summary>
@@ -81,6 +108,11 @@ public class PlayerInteraction : MonoBehaviour
 
             case LootClass.LootTypes.Ammo:
                 _quantityBullets += _loot.QuantityBullets;
+                if (_weaponActive)
+                {
+                    _weaponController.ClipFullness = _quantityBullets;
+                    _quantityBullets = 0;
+                }
                 break;
 
             case LootClass.LootTypes.Armor:
@@ -101,13 +133,28 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     if (!_inventoryList.Contains(_loot.LootType)) _inventoryList.Add(_loot.LootType);
                     if (!_weaponsList.Contains(_loot.WeaponName)) _weaponsList.Add(_loot.WeaponName);
+
+                    _weaponActive = true;
+
+                    _weaponObj = Storage.FindTransformInChildrenWithTag(pickUpedLootObj, Storage.WeaponTag).gameObject;
+
+                    _weaponController = _weaponObj.GetComponent<WeaponController>();
+
+                    _weaponObj.transform.SetParent(_weaponPositionTransform, false);
+                    _weaponObj.transform.localPosition = Vector3.zero;
+                    _weaponObj.transform.localRotation = Quaternion.identity;
+                    _weaponObj.transform.localScale = Vector3.one;
+
+                    // Load bullets to weapon clip
+                    _weaponController.ClipFullness = _quantityBullets;
+                    _quantityBullets = 0;
                 }
                 break;
 
             default:
                 break;
         }
-        
+
         Storage.ToLog(this, Storage.GetCallerName(), "Get " + pickUpedLootObj.name);
         Destroy(pickUpedLootObj);
     }

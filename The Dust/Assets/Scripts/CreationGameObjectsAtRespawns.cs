@@ -15,12 +15,15 @@ public class CreationGameObjectsAtRespawns : MonoBehaviour
 
     private void Awake()
     {
-        _charactersParent = GameObject.FindGameObjectWithTag("DynamicallyCreatedTag");
+        _charactersParent = GameObject.FindGameObjectWithTag(Storage.DynamicallyCreatedTag);
         
-        foreach (Transform item in GameObject.FindGameObjectWithTag("Resp").GetComponentsInChildren(typeof(Transform)))
+        foreach (Transform item in GameObject.FindGameObjectWithTag(Storage.RespTag).GetComponentsInChildren(typeof(Transform)))
         {
             if (item.CompareTag(Storage.PlayerTag))
+            {
+                item.tag = Storage.Untagged;
                 Instantiate(_player, item.position, Quaternion.identity, _charactersParent.transform);
+            }
             
             else if (item.CompareTag(Storage.NordWayTag))
             {
@@ -40,6 +43,7 @@ public class CreationGameObjectsAtRespawns : MonoBehaviour
                 _temp.tag = Storage.SandWayTag;
             }
 
+            // ToDo
             // BOSS
 
         }

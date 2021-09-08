@@ -11,11 +11,12 @@ public class PlayerMoving : MonoBehaviour
     private Rigidbody _playerRigidbody;
     private Transform _playerTransform;
     private Transform _cameraTransform;
-    private int _speedWalk = 2;
-    private int _speedRun = 5;
+    private float _speedWalk = 2f;
+    private float _speedRun = 5f;
+    private float _yRot;
     private bool _isSpeedUp;
     private bool _isJump;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class PlayerMoving : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         GetInput();
         CameraRotate();
@@ -39,9 +40,12 @@ public class PlayerMoving : MonoBehaviour
     private void GetInput()
     {
         _inputMoveDirection.x = Input.GetAxis("Horizontal");
+        _inputMoveDirection.y = 0f;
         _inputMoveDirection.z = Input.GetAxis("Vertical");
         _inputMoveDirection.Normalize();
 
+        _yRot = Input.GetAxisRaw("Mouse X");
+        
         _inputLookDirection.x += Input.GetAxis("Mouse X");
         _inputLookDirection.y -= Input.GetAxis("Mouse Y");
 
@@ -57,7 +61,7 @@ public class PlayerMoving : MonoBehaviour
     {
         if (_inputLookDirection.y > 65) _inputLookDirection.y = 65;
         if (_inputLookDirection.y < -65) _inputLookDirection.y = -65;
-        
+
         _cameraTransform.rotation = Quaternion.Euler(_inputLookDirection.y, _inputLookDirection.x, 0f);
     }
 
@@ -66,8 +70,8 @@ public class PlayerMoving : MonoBehaviour
     /// </summary>
     private void PlayerMove()
     {
-        _playerTransform.rotation = Quaternion.Euler(0f, _inputLookDirection.x, 0f);
-
-        _playerTransform.Translate(_inputMoveDirection * Time.deltaTime * (_isSpeedUp ? _speedRun : _speedWalk) );
+        
+        _playerRigidbody.MovePosition(_playerRigidbody.position + _inputMoveDirection * (_isSpeedUp ? _speedRun : _speedWalk) * Time.deltaTime);
+        _playerRigidbody.MoveRotation(_playerRigidbody.rotation * Quaternion.Euler(0f, _yRot, 0f));
     }
 }

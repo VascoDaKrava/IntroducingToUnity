@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
-    [SerializeField] private int _health = 100;
+    [SerializeField] private int _health;
     private int _armor = 0;
 
     public int Health { get { return _health; } }
@@ -57,6 +57,7 @@ public class HealthController : MonoBehaviour
 
     private void Die()
     {
+        Storage.ToLog(this, Storage.GetCallerName(), "Death is coming so soon..");
         Destroy(gameObject);
     }
 }

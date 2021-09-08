@@ -17,6 +17,10 @@ TagManager:
   - UndergroundWayPoints
   - SandWayPoints
   - NavPoints
+  - WeaponPositionTag
+  - Weapon
+  - BulletStart1
+  - BulletStart2
   layers:
   - Default
   - TransparentFX
