@@ -6,9 +6,18 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField] private int _health;
     private int _armor = 0;
+    private bool _isIamPlayer = false;
+    private PlayerInteraction _player;
 
     public int Health { get { return _health; } }
     public int Armor { get { return _armor; } }
+
+    private void Start()
+    {
+        _isIamPlayer = CompareTag(Storage.PlayerTag);
+        if (_isIamPlayer)
+            _player = GetComponent<PlayerInteraction>();
+    }
 
     /// <summary>
     /// Change Health
@@ -20,16 +29,20 @@ public class HealthController : MonoBehaviour
         {
             _health += newHealth;
             if (_health > 100) _health = 100;
+            if (_isIamPlayer) _player.UpdateUI();
             return;
         }
 
         if (_armor > 0)
         {
             reduceArmor(newHealth);
+            if (_isIamPlayer) _player.UpdateUI();
             return;
         }
 
         _health += newHealth;
+
+        if (_isIamPlayer) _player.UpdateUI();
 
         if (_health <= 0) Die();
 
@@ -44,6 +57,8 @@ public class HealthController : MonoBehaviour
         _armor += armor;
 
         if (_armor > 100) _armor = 100;
+
+        if (_isIamPlayer) _player.UpdateUI();
     }
 
     /// <summary>

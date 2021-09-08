@@ -72,14 +72,13 @@ public class Storage : MonoBehaviour
     private static string _bullet2StartPositionTag = "BulletStart2";// 16
     private static string _playerHeadTag = "PlayerHead";// 17
     private static string _enemyNavigatedTag = "EnemyNavigated";// 18
-    
-    private static string _untagged = "Untagged";
-    private static string _mainCamera = "MainCamera";
-    private static string _playerTag = "Player";
-    public static string PlayerTag { get { return _playerTag; } }
-    public static string MainCameraTag { get { return _mainCamera; } }
-    public static string Untagged { get { return _untagged; } }
-
+    private static string _healthUI = "UI_health";// 19
+    private static string _armorUI = "UI_armor";// 20
+    private static string _bulletsUI = "UI_bullets";// 21
+    private static string _grenadesUI = "UI_grenades";// 22
+    private static string _keysUI = "UI_keys";// 23
+    private static string _c4UI = "UI_C4";// 24
+    private static string _UI = "UI";// 25
 
     public static string RespTag { get { return _respTag; } }
     public static string GlobalTag { get { return _globalTag; } }
@@ -95,6 +94,20 @@ public class Storage : MonoBehaviour
     public static string Bullet2StartPositionTag { get { return _bullet2StartPositionTag; } }
     public static string PlayerHeadTag { get { return _playerHeadTag; } }
     public static string EnemyNavigatedTag { get { return _enemyNavigatedTag; } }
+    public static string HealthUITag { get { return _healthUI; } }
+    public static string ArmorUITag { get { return _armorUI; } }
+    public static string BulletsUITag { get { return _bulletsUI; } }
+    public static string GrenadesUITag { get { return _grenadesUI; } }
+    public static string KeysUITag { get { return _keysUI; } }
+    public static string C4UITag { get { return _c4UI; } }
+    public static string UITag { get { return _UI; } }
+
+    private static string _untagged = "Untagged";
+    private static string _mainCamera = "MainCamera";
+    private static string _playerTag = "Player";
+    public static string PlayerTag { get { return _playerTag; } }
+    public static string MainCameraTag { get { return _mainCamera; } }
+    public static string Untagged { get { return _untagged; } }
 
     #endregion
 
