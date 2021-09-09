@@ -22,10 +22,15 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
     private float _volumeMasterValue = 0f;
 
     private GameObject _optionsItems;
+    private GameObject _loadingItems;
+    private GameObject _menuItems;
 
     private Button _startButton;
     private Button _optionsButton;
     private Button _exitButton;
+
+    private Text _loadingText;
+    private Image _loadingProgressBar;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +59,14 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
 
         _optionsItems = GameObject.Find("OptionsItem");
         _optionsItems.SetActive(false);
+
+        _loadingText = GameObject.Find("LoadingText").GetComponent<Text>();
+        _loadingProgressBar = GameObject.Find("LoadingProgress").GetComponent<Image>();
+
+        _loadingItems = GameObject.Find("Loading");
+        _loadingItems.SetActive(false);
+
+        _menuItems = GameObject.Find("MenuItems");
     }
 
     public void StartNewGame()
@@ -63,8 +76,35 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
         Settings.VolumeMusic = _volumeMusicSlider.value;
         Settings.VolumeFX = _volumeFXSlider.value;
         Settings.VolumeMute = _volumeMasterToggle.isOn;
-        SceneManager.LoadScene(1);
+        _menuItems.SetActive(false);
+        _loadingItems.SetActive(true);
+
+        StartCoroutine(LoadWithProgress(1));
     }
+
+    IEnumerator LoadWithProgress(int loadingScene)
+    {
+        yield return null;
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(loadingScene);
+        asyncOperation.allowSceneActivation = false;
+        _loadingProgressBar.fillAmount = asyncOperation.progress;
+
+        while (!asyncOperation.isDone)
+        {
+            _loadingProgressBar.fillAmount = asyncOperation.progress;
+
+            if (asyncOperation.progress >= 0.9f)
+            {
+                _loadingProgressBar.fillAmount = 1f;
+                _loadingText.text = "Press any key to continue";
+                if (Input.anyKeyDown)
+                    asyncOperation.allowSceneActivation = true;
+            }
+            yield return null;
+        }
+    }
+
 
     #region OptionsMenu
 
