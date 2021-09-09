@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Storage : MonoBehaviour
 {
+    [SerializeField] private AudioMixer _mixer;
+
     private void Awake()
     {
         // Search NavPoints
@@ -19,6 +22,16 @@ public class Storage : MonoBehaviour
             else if (item.CompareTag(SandWayTag))
                 _sandWay.Add(item.position);
         }
+
+        // Load audio settings
+        if (Settings.VolumeMute)
+            _mixer.SetFloat(VolumeNameMaster, -80f);
+        else
+            _mixer.SetFloat(VolumeNameMaster, Settings.VolumeMaster);
+        
+        _mixer.SetFloat(VolumeNameMusic, Settings.VolumeMusic);
+        _mixer.SetFloat(VolumeNameMenu, Settings.VolumeMenu);
+        _mixer.SetFloat(VolumeNameFX, Settings.VolumeFX);
     }
 
     #region For Navigation
@@ -33,7 +46,21 @@ public class Storage : MonoBehaviour
 
     #endregion
 
-    #region Statics for Tags
+    #region Static for Volume
+
+    private static string _mixerMaster = "MasterVolume";
+    private static string _mixerMusic = "MusicVolume";
+    private static string _mixerMenu = "MenuVolume";
+    private static string _mixerFX = "FXVolume";
+
+    public static string VolumeNameMaster { get { return _mixerMaster; } }
+    public static string VolumeNameMusic { get { return _mixerMusic; } }
+    public static string VolumeNameMenu { get { return _mixerMenu; } }
+    public static string VolumeNameFX { get { return _mixerFX; } }
+
+    #endregion
+
+    #region Static for Tags
 
     #region ToDo
 
