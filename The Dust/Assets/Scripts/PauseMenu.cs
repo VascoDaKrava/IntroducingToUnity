@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 
-public class MainMenu : MonoBehaviour, IPointerEnterHandler
+public class PauseMenu : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private AudioClip _buttonSelect;
@@ -22,24 +22,24 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
     private float _volumeMasterValue = 0f;
 
     private GameObject _optionsItems;
-    private GameObject _loadingItems;
     private GameObject _menuItems;
 
-    private Button _startButton;
+    private Button _backToMainButton;
     private Button _optionsButton;
+    private Button _resumeButton;
     private Button _exitButton;
 
-    private Text _loadingText;
-    private Image _loadingProgressBar;
+    private bool _isPauseActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
         _audioSourceMenu = GameObject.Find("Audio Source Menu").GetComponent<AudioSource>();
 
-        _startButton = GameObject.Find("Start").GetComponent<Button>();
+        _backToMainButton = GameObject.Find("BackToMainMenu").GetComponent<Button>();
         _optionsButton = GameObject.Find("Options").GetComponent<Button>();
-        _exitButton = GameObject.Find("Exit").GetComponent<Button>();
+        _resumeButton = GameObject.Find("Resume").GetComponent<Button>();
+        _exitButton = GameObject.Find("ExitGame").GetComponent<Button>();
 
         _volumeMasterSlider = GameObject.Find("MainVolumeSlider").GetComponent<Slider>();
         _volumeMasterSlider.value = _volumeMasterValue;
@@ -59,13 +59,8 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
         _optionsItems = GameObject.Find("OptionsItem");
         _optionsItems.SetActive(false);
 
-        _loadingText = GameObject.Find("LoadingText").GetComponent<Text>();
-        _loadingProgressBar = GameObject.Find("LoadingProgress").GetComponent<Image>();
-
-        _loadingItems = GameObject.Find("Loading");
-        _loadingItems.SetActive(false);
-
         _menuItems = GameObject.Find("MenuItems");
+        _menuItems.SetActive(false);
 
         // Load audio settings
         if (Settings.VolumeMute)
@@ -87,7 +82,39 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
         _volumeFXSlider.value = Settings.VolumeFX;
     }
 
-    public void StartNewGame()
+    private void Update()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            ShowHidePauseMenu();
+        }
+    }
+
+    /// <summary>
+    /// Reverse show/hide menu
+    /// </summary>
+    public void ShowHidePauseMenu()
+    {
+        if (_isPauseActive)
+        {
+            if (_optionsItems.activeSelf)
+            {
+                GoToOptionsMenu(false);
+                return;
+            }
+            _isPauseActive = !_isPauseActive;
+            _menuItems.SetActive(_isPauseActive);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            Time.timeScale = 0f;
+            _isPauseActive = !_isPauseActive;
+            _menuItems.SetActive(_isPauseActive);
+        }
+    }
+
+    public void LoadMainMenu()
     {
         Settings.VolumeMaster = _volumeMasterValue;
         Settings.VolumeMenu = _volumeMenuSlider.value;
@@ -95,34 +122,8 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
         Settings.VolumeFX = _volumeFXSlider.value;
         Settings.VolumeMute = _volumeMasterToggle.isOn;
         _menuItems.SetActive(false);
-        _loadingItems.SetActive(true);
-
-        StartCoroutine(LoadWithProgress(1));
+        SceneManager.LoadScene(0);
     }
-
-    IEnumerator LoadWithProgress(int loadingScene)
-    {
-        yield return null;
-
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(loadingScene);
-        asyncOperation.allowSceneActivation = false;
-        _loadingProgressBar.fillAmount = asyncOperation.progress;
-
-        while (!asyncOperation.isDone)
-        {
-            _loadingProgressBar.fillAmount = asyncOperation.progress;
-
-            if (asyncOperation.progress >= 0.9f)
-            {
-                _loadingProgressBar.fillAmount = 1f;
-                _loadingText.text = "Press any key to continue";
-                if (Input.anyKeyDown)
-                    asyncOperation.allowSceneActivation = true;
-            }
-            yield return null;
-        }
-    }
-
 
     #region OptionsMenu
 
@@ -132,8 +133,9 @@ public class MainMenu : MonoBehaviour, IPointerEnterHandler
     /// <param name="isToOptions"></param>
     public void GoToOptionsMenu(bool isToOptions)
     {
-        _startButton.interactable = !isToOptions;
+        _backToMainButton.interactable = !isToOptions;
         _optionsButton.interactable = !isToOptions;
+        _resumeButton.gameObject.SetActive(!isToOptions);
         _exitButton.interactable = !isToOptions;
         _optionsItems.SetActive(isToOptions);
     }
