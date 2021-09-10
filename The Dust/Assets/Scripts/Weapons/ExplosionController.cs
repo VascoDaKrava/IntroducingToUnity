@@ -18,6 +18,7 @@ public class ExplosionController : MonoBehaviour
     private string _boomMethodName = "MakeExplosion";
 
     private AudioSource _audioSource;
+    private ParticleSystem _particleSystem;
     private float _timeForFX = 2.5f;// Length of Audio to play, before object was destroyed
 
     /// <summary>
@@ -92,11 +93,13 @@ public class ExplosionController : MonoBehaviour
         }
         Storage.ToLog(this, Storage.GetCallerName(), "B O O M!");
         _audioSource.Play();
+        _particleSystem.Play();
         Destroy(_bomb, _timeForFX);
     }
 
     private void Start()
     {
         _audioSource = Storage.FindTransformInChildrenWithTag(gameObject, Storage.AudioSourceTag).GetComponent<AudioSource>();
+        _particleSystem = Storage.FindTransformInChildrenWithTag(gameObject, "ParticleSystem").GetComponent<ParticleSystem>();
     }
 }
