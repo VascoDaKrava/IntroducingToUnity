@@ -7,6 +7,7 @@ using UnityEngine.Audio;
 public class Storage : MonoBehaviour
 {
     [SerializeField] private AudioMixer _mixer;
+    [SerializeField] List<AudioClip> _musicClips;
 
     private void Awake()
     {
@@ -106,6 +107,7 @@ public class Storage : MonoBehaviour
     private static string _keysUI = "UI_keys";// 23
     private static string _c4UI = "UI_C4";// 24
     private static string _UI = "UI";// 25
+    private static string _audioSource = "AudioSource";// 26
 
     public static string RespTag { get { return _respTag; } }
     public static string GlobalTag { get { return _globalTag; } }
@@ -128,6 +130,7 @@ public class Storage : MonoBehaviour
     public static string KeysUITag { get { return _keysUI; } }
     public static string C4UITag { get { return _c4UI; } }
     public static string UITag { get { return _UI; } }
+    public static string AudioSourceTag { get { return _audioSource; } }
 
     private static string _untagged = "Untagged";
     private static string _mainCamera = "MainCamera";

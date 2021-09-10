@@ -154,7 +154,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -20651,6 +20651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mixer: {fileID: 24100000, guid: 4ae0a32b6429a0c4aa347ff871839955, type: 2}
+  _musicClips: []
 --- !u!1001 &1100834293
 PrefabInstance:
   m_ObjectHideFlags: 0

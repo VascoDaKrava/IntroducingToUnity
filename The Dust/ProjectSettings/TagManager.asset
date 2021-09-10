@@ -30,6 +30,7 @@ TagManager:
   - UI_keys
   - UI_C4
   - UI
+  - AudioSource
   layers:
   - Default
   - TransparentFX
