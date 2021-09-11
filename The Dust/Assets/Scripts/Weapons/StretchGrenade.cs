@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class StretchGrenade : MonoBehaviour
 {
+    private ExplosionController _grenade;
+    
     private int _damage = 50;
-
-    private List<int> _triggerColliderList;
-
-    private void Start()
-    {
-        _triggerColliderList = GameObject.FindGameObjectWithTag("GlobalScript").GetComponent<Storage>().TriggerColliderList;
-    }
+    private float _explosionRadius = 8f;
+    private float _pushForce = 2000f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_triggerColliderList.Contains(other.GetHashCode())) return;
+        if (other.isTrigger) return;
 
-        Storage.ToLog(this, Storage.GetCallerName(), "B O O M --> " + other.name);
+        _grenade = Storage.FindTransformInChildrenWithTag(transform.parent.gameObject, Storage.WeaponTag).GetComponent<ExplosionController>();
+        _grenade.Damage = _damage;
+        _grenade.ExplosionRadius = _explosionRadius;
+        _grenade.ExplosionForce = _pushForce;
 
-        if (other.GetComponent<HealthController>() != null)
-            other.GetComponent<HealthController>().ChangeHealth(-_damage);
+        _grenade.LetBoom(transform.parent.gameObject);
 
-        Destroy(transform.parent.gameObject);
+        //Destroy(transform.parent.gameObject);
     }
 }

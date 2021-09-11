@@ -41,9 +41,6 @@ public class TurretController : MonoBehaviour
         _bulletParentTransform = GameObject.FindGameObjectWithTag(Storage.DynamicallyCreatedTag).transform;
         _bulletStartLeft = Storage.FindTransformInChildrenWithTag(gameObject, Storage.Bullet1StartPositionTag);
         _bulletStartRight = Storage.FindTransformInChildrenWithTag(gameObject, Storage.Bullet2StartPositionTag);
-        
-        // Add own trigger-collider to Global List
-        GameObject.FindGameObjectWithTag(Storage.GlobalTag).GetComponent<Storage>().TriggerColliderList.Add(_turretTriggerDetectorCollider.GetHashCode());
     }
 
     // Update is called once per frame

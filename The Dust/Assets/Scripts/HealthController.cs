@@ -16,43 +16,50 @@ public class HealthController : MonoBehaviour
     /// <param name="newHealth"></param>
     public void ChangeHealth(int newHealth)
     {
-        if (_armor > 0) changeArmor(ref newHealth);
-        if (newHealth != 0)
+        if (newHealth >= 0)
         {
             _health += newHealth;
             if (_health > 100) _health = 100;
-            if (_health <= 0) Die();
+            return;
         }
+
+        if (_armor > 0)
+        {
+            reduceArmor(newHealth);
+            return;
+        }
+
+        _health += newHealth;
+
+        if (_health <= 0) Die();
+
     }
 
     /// <summary>
     /// Change Armor. If nothing to change - change Health.
     /// </summary>
     /// <param name="armor"></param>
-    public void ChangeArmor(int armor)
+    public void AddArmor(int armor)
     {
-        changeArmor(ref armor);
+        _armor += armor;
+
+        if (_armor > 100) _armor = 100;
     }
 
-    private void changeArmor(ref int newArmor)
+    /// <summary>
+    /// Reduce armor and health (if armor may be negative)
+    /// </summary>
+    /// <param name="newArmor"></param>
+    private void reduceArmor(int newArmor)
     {
-        _armor += newArmor;
-
-        if (_armor > 100)
+        if (_armor + newArmor < 0)
         {
-            _armor = 100;
+            newArmor += _armor;
+            _armor = 0;
+            ChangeHealth(newArmor);
         }
         else
-        {
-            if (_armor < 0)
-            {
-                newArmor = _armor;
-            }
-            else
-            {
-                newArmor = _armor;
-            }
-        }
+            _armor += newArmor;
     }
 
     private void Die()

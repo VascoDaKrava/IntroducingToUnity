@@ -9,7 +9,7 @@ public class BulletControllerRay : MonoBehaviour
 
     private RaycastHit _hitObj;
 
-    private int _mask = 1 << 0; // Layer 0 = Default
+    private int _mask = ~0; // All layers
     private float _bulletLength = 0.001f;
     private float _magicNumber = 4f;
     private bool _isRayActive = true;

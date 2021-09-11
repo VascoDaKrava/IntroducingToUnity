@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4687489643230478261}
   - component: {fileID: 5354696764581716511}
   - component: {fileID: 7942017007864665113}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Top
   m_TagString: AmmoBoxTopTag
   m_Icon: {fileID: 0}
@@ -93,10 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6712303797654191262}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LootBox
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 225357013206044702}
   - component: {fileID: 270835859160240310}
   - component: {fileID: 6663293554587867367}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lock
   m_TagString: AmmoBoxLockTag
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 4545274639173847492}
   - component: {fileID: 9222376997729455771}
   - component: {fileID: 1358921911070181490}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Knob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 7336486604184865521}
   - component: {fileID: 2841597810744309774}
   - component: {fileID: 4295506899776259608}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AmmoBox-SCP-902
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -389,3 +389,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe57a7626ad763479f1012293281598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lootAsset: {fileID: 0}

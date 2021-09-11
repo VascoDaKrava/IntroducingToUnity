@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6116009289773163560}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LootBox-AK74
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5245502008233223939}
   - component: {fileID: 4866490005630384809}
   - component: {fileID: 7489834544135638191}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Top
   m_TagString: AmmoBoxTopTag
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 785363239055640744}
   - component: {fileID: 721905737246885888}
   - component: {fileID: 6178459959737040977}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lock
   m_TagString: AmmoBoxLockTag
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 3950366632903790962}
   - component: {fileID: 8519400588119643693}
   - component: {fileID: 1953813407082778820}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Knob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 7788664411624575559}
   - component: {fileID: 3362474307815268536}
   - component: {fileID: 3628281110609436334}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AmmoBox-SCP-902
   m_TagString: Untagged
   m_Icon: {fileID: 0}

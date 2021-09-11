@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2221017127488240417}
   - component: {fileID: 2221017127488240416}
   - component: {fileID: 2221017127488240431}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WoodenBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4917829266015147585}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: JumpPointOnBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2414796118327587823}
   - component: {fileID: 4518280976446610474}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WoodenBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8497118605168977601}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: JumpPointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
