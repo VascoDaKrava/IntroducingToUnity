@@ -36,9 +36,11 @@ public class ExplosionController : MonoBehaviour
     /// </summary>
     public float ExplosionForce { get { return _force; } set { _force = value; } }
 
+
     /// <summary>
-    /// Make explosion with pause if need
+    /// Make explosion "bomb" with pause if need
     /// </summary>
+    /// <param name="bomb">GameObject to explosion</param>
     public void LetBoom(GameObject bomb)
     {
         _bomb = bomb;
@@ -58,17 +60,31 @@ public class ExplosionController : MonoBehaviour
                 _mask,
                 QueryTriggerInteraction.Ignore))
         {
+            // If collider is enemy with navigation, disable navigation and add Rigidbody
+            //if (item.CompareTag(Storage.EnemyNavigatedTag))
+            //{
+            //    item.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+            //    item.gameObject.AddComponent(typeof(Rigidbody));
+            //    item.gameObject.GetComponent<Rigidbody>().mass = 90f;
+            //}
+
             // Check for Push
-            if (item.attachedRigidbody != null)
+            if (item.attachedRigidbody != null) // If have rigidbody - pushing
             {
                 _directionToObjInRaius = item.attachedRigidbody.centerOfMass + item.attachedRigidbody.position - transform.position;
 
                 item.attachedRigidbody.AddForce(_directionToObjInRaius.normalized * (_explosionRadius - _directionToObjInRaius.magnitude) / _explosionRadius * _force, ForceMode.Impulse);
             }
-            else _directionToObjInRaius = item.transform.position - transform.position;
+            else _directionToObjInRaius = item.transform.position - transform.position; // If do not have rigidbody - do not pushing, but calculate percent of damage
 
             // Apply damage, if posible
             item.GetComponent<HealthController>()?.ChangeHealth(-Mathf.CeilToInt(Damage * (_explosionRadius - _directionToObjInRaius.magnitude) / _explosionRadius));
+
+            //if (item.CompareTag(Storage.EnemyNavigatedTag))
+            //{
+            //    Destroy(item.gameObject.GetComponent(typeof(Rigidbody)));
+            //    item.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+            //}
         }
         Storage.ToLog(this, Storage.GetCallerName(), "B O O M!");
         Destroy(_bomb);

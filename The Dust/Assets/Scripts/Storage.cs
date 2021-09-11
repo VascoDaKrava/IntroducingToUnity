@@ -20,7 +20,7 @@ public class Storage : MonoBehaviour
                 _sandWay.Add(item.position);
         }
     }
-    
+
     #region For Navigation
 
     private List<Vector3> _nordWay = new List<Vector3>();
@@ -70,10 +70,14 @@ public class Storage : MonoBehaviour
     private static string _weaponTag = "Weapon";// 14
     private static string _bullet1StartPositionTag = "BulletStart1";// 15
     private static string _bullet2StartPositionTag = "BulletStart2";// 16
-
+    private static string _playerHeadTag = "PlayerHead";// 17
+    private static string _enemyNavigatedTag = "EnemyNavigated";// 18
+    
     private static string _untagged = "Untagged";
+    private static string _mainCamera = "MainCamera";
     private static string _playerTag = "Player";
     public static string PlayerTag { get { return _playerTag; } }
+    public static string MainCameraTag { get { return _mainCamera; } }
     public static string Untagged { get { return _untagged; } }
 
 
@@ -89,6 +93,8 @@ public class Storage : MonoBehaviour
     public static string WeaponTag { get { return _weaponTag; } }
     public static string Bullet1StartPositionTag { get { return _bullet1StartPositionTag; } }
     public static string Bullet2StartPositionTag { get { return _bullet2StartPositionTag; } }
+    public static string PlayerHeadTag { get { return _playerHeadTag; } }
+    public static string EnemyNavigatedTag { get { return _enemyNavigatedTag; } }
 
     #endregion
 

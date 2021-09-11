@@ -21,6 +21,8 @@ TagManager:
   - Weapon
   - BulletStart1
   - BulletStart2
+  - PlayerHead
+  - EnemyNavigated
   layers:
   - Default
   - TransparentFX
@@ -28,7 +30,7 @@ TagManager:
   - Ready for jump
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

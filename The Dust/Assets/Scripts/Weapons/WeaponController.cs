@@ -38,8 +38,9 @@ public class WeaponController : MonoBehaviour
     {
         if (_clipFullness == 0)
         {
-            Storage.ToLog(this, Storage.GetCallerName(), "Can't fire. Clip is empty");
             _readyForFire = false;
+            Storage.ToLog(this, Storage.GetCallerName(), "Can't fire. Clip is empty");
+            StartCoroutine(WaitForNextShot(60f / _rateOfFire));
             return;
         }
 

@@ -18,7 +18,7 @@ public class LootModel : MonoBehaviour
     {
         switch (_lootType)
         {
-            case LootClass.LootTypes.Aim:
+            case LootClass.LootTypes.Aid:
                 _loot = new LootClass(_lootType, _power);
                 break;
             
