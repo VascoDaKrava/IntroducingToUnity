@@ -1,7 +1,7 @@
 public static class Settings
 {
     private static float _volumeMaster = 0f;
-    private static float _volumeMusic = 0f;
+    private static float _volumeMusic = -15f;
     private static float _volumeMenu = 0f;
     private static float _volumeFX = 0f;
     private static bool _volumeMute = false;

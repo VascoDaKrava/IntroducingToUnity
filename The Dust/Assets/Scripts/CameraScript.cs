@@ -20,7 +20,8 @@ public class CameraScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    //void LateUpdate()
+    private void FixedUpdate()
     {
         if (Vector3.Distance(_cameraTransform.position, _playerHeadTransform.position) > _distanceToChangeSens)
             _cameraRotationSens = _cameraRotationSensMin;
