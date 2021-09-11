@@ -84,11 +84,11 @@ public class Storage : MonoBehaviour
     private static string _respTag = "Resp";// 00
     private static string _globalTag = "GlobalScript";// 01
     private static string _dynamicalyCreatedTag = "DynamicallyCreatedTag";// 02
-    //private static string _lootTag = "LootTag";// 03
-    //private static string _ammoBoxLockTag = "AmmoBoxLockTag";// 04
-    //private static string _ammoBoxTopTag = "AmmoBoxTopTag";// 05
-    //private static string _DoorLeftTag = "DoorLeft";// 06
-    //private static string _DoorRightTag = "DoorRight";// 07
+    private static string _lootTag = "LootTag";// 03
+    private static string _ammoBoxLockTag = "AmmoBoxLockTag";// 04
+    private static string _ammoBoxTopTag = "AmmoBoxTopTag";// 05
+    private static string _doorLeftTag = "DoorLeft";// 06
+    private static string _doorRightTag = "DoorRight";// 07
     private static string _platformTag = "QuestPlatform";// 08
     private static string _nordWayPointsTag = "NordWayPoints";// 09
     private static string _undergroundWayPointsTag = "UndergroundWayPoints";// 10
@@ -108,10 +108,16 @@ public class Storage : MonoBehaviour
     private static string _c4UI = "UI_C4";// 24
     private static string _UI = "UI";// 25
     private static string _audioSource = "AudioSource";// 26
+    private static string _particleSystem = "ParticleSystem";// 27
 
     public static string RespTag { get { return _respTag; } }
     public static string GlobalTag { get { return _globalTag; } }
     public static string DynamicallyCreatedTag { get { return _dynamicalyCreatedTag; } }
+    public static string LootTag { get { return _lootTag; } }
+    public static string AmmoBoxLockTag { get { return _ammoBoxLockTag; } }
+    public static string AmmoBoxTopTag { get { return _ammoBoxTopTag; } }
+    public static string DoorLeftTag { get { return _doorLeftTag; } }
+    public static string DoorRightTag { get { return _doorRightTag; } }
     public static string PlatformTag { get { return _platformTag; } }
     public static string NordWayTag { get { return _nordWayPointsTag; } }
     public static string UndergroundWayTag { get { return _undergroundWayPointsTag; } }
@@ -131,6 +137,7 @@ public class Storage : MonoBehaviour
     public static string C4UITag { get { return _c4UI; } }
     public static string UITag { get { return _UI; } }
     public static string AudioSourceTag { get { return _audioSource; } }
+    public static string ParticleSystemTag { get { return _particleSystem; } }
 
     private static string _untagged = "Untagged";
     private static string _mainCamera = "MainCamera";
@@ -161,6 +168,23 @@ public class Storage : MonoBehaviour
                 return item;
         }
         return null;
+    }
+
+    /// <summary>
+    /// Find ALL transforms with "tag" in children of "gameObj", return as LIST
+    /// </summary>
+    /// <param name="gameObj"></param>
+    /// <param name="tag"></param>
+    /// <returns></returns>
+    public static List<Transform> FindALLTransformInChildrenWithTag(GameObject gameObj, string tag)
+    {
+        List<Transform> result = new List<Transform>();
+        foreach (Transform item in gameObj.GetComponentsInChildren(typeof(Transform)))
+        {
+            if (item.CompareTag(tag))
+                result.Add(item);
+        }
+        return result;
     }
 
     /// <summary>

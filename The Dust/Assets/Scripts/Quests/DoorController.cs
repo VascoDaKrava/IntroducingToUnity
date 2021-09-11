@@ -7,15 +7,14 @@ public class DoorController : MonoBehaviour
     private Transform _leftDoorTransform;
     private Transform _rightDoorTransform;
 
+    private List<ParticleSystem> _fxList = new List<ParticleSystem>();
+
     private int _openAngle = 120;
 
     private float _openSpeed = 60f; // Degree per second
 
     private bool _isClosed = true;
     private bool _needOpen = false;
-
-    private string _leftDoorTag = "DoorLeft";
-    private string _rightDoorTag = "DoorRight";
 
     public bool NeedOpen { get { return _needOpen; } set { _needOpen = value; } }
 
@@ -29,8 +28,9 @@ public class DoorController : MonoBehaviour
     {
         foreach (Component item in gameObject.GetComponentsInChildren(typeof(Transform)))
         {
-            if (item.CompareTag(_leftDoorTag)) _leftDoorTransform = item.transform;
-            if (item.CompareTag(_rightDoorTag)) _rightDoorTransform = item.transform;
+            if (item.CompareTag(Storage.DoorLeftTag)) _leftDoorTransform = item.transform;
+            if (item.CompareTag(Storage.DoorRightTag)) _rightDoorTransform = item.transform;
+            if (item.CompareTag(Storage.ParticleSystemTag)) _fxList.Add(item.GetComponent<ParticleSystem>());
         }
     }
 
@@ -50,6 +50,7 @@ public class DoorController : MonoBehaviour
             {
                 _isClosed = false;
                 _needOpen = false;
+                foreach (var item in _fxList) item.Stop();
             }
             else
             {

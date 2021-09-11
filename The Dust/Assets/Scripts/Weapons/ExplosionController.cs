@@ -93,13 +93,13 @@ public class ExplosionController : MonoBehaviour
         }
         Storage.ToLog(this, Storage.GetCallerName(), "B O O M!");
         _audioSource.Play();
-        _particleSystem.Play();
+        //_particleSystem.Play();
         Destroy(_bomb, _timeForFX);
     }
 
     private void Start()
     {
         _audioSource = Storage.FindTransformInChildrenWithTag(gameObject, Storage.AudioSourceTag).GetComponent<AudioSource>();
-        _particleSystem = Storage.FindTransformInChildrenWithTag(gameObject, "ParticleSystem").GetComponent<ParticleSystem>();
+        //_particleSystem = Storage.FindTransformInChildrenWithTag(gameObject, "ParticleSystem").GetComponent<ParticleSystem>();
     }
 }
