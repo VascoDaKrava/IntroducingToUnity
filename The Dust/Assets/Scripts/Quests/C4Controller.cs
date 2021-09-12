@@ -14,8 +14,6 @@ public class C4Controller : MonoBehaviour
     private float _timeToExplosion = 10f; // In seconds
     private float _pushForce = 2000f;
 
-    //private string _boomMethodName = "BombExplosion";
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && !_bombPlanted)
@@ -34,8 +32,6 @@ public class C4Controller : MonoBehaviour
                 _bombPlanted = true;
 
                 _C4.LetBoom(gameObject);
-
-                //Destroy(gameObject);
             }
             else
                 Storage.ToLog(this, Storage.GetCallerName(), "No bomb for planted");
