@@ -20817,7 +20817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 7779035578238224590, guid: 2c8011f10cb49284593a64d01547174b, type: 3}
   _enemy: {fileID: 821672196478773305, guid: f9768d83278c6c24a979b6c710680701, type: 3}
-  _boss: {fileID: 821672196478773305, guid: f9768d83278c6c24a979b6c710680701, type: 3}
+  _boss: {fileID: 5104220962656608746, guid: bf7794f35ab536346a21b8648ffdb5cc, type: 3}
 --- !u!114 &1100704294
 MonoBehaviour:
   m_ObjectHideFlags: 0
