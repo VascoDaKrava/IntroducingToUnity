@@ -21,6 +21,7 @@ public class WeaponController : MonoBehaviour
     private BulletControllerRay _bulletCloneScript;
 
     private AudioSource _audioSource;
+    private ParticleSystem _fx;
 
     public bool ReadyForFire { get { return _readyForFire; } }
 
@@ -36,6 +37,7 @@ public class WeaponController : MonoBehaviour
         _bulletStartTransform = Storage.FindTransformInChildrenWithTag(gameObject, Storage.Bullet1StartPositionTag);
         _bulletParentTransform = GameObject.FindGameObjectWithTag(Storage.DynamicallyCreatedTag).transform;
         _audioSource = Storage.FindTransformInChildrenWithTag(gameObject, Storage.AudioSourceTag).GetComponent<AudioSource>();
+        _fx = Storage.FindTransformInChildrenWithTag(gameObject, Storage.ParticleSystemTag).GetComponent<ParticleSystem>();
     }
      
     public void Fire()
@@ -53,6 +55,7 @@ public class WeaponController : MonoBehaviour
         _bulletCloneScript.BulletDamage = _bulletDamage;
 
         _audioSource.Play();
+        _fx.Play();
 
         _clipFullness--;
 
