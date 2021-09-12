@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Storage : MonoBehaviour
 {
+    [SerializeField] private AudioMixer _mixer;
+    [SerializeField] List<AudioClip> _musicClips;
+
     private void Awake()
     {
         // Search NavPoints
@@ -19,6 +23,16 @@ public class Storage : MonoBehaviour
             else if (item.CompareTag(SandWayTag))
                 _sandWay.Add(item.position);
         }
+
+        // Load audio settings
+        if (Settings.VolumeMute)
+            _mixer.SetFloat(VolumeNameMaster, -80f);
+        else
+            _mixer.SetFloat(VolumeNameMaster, Settings.VolumeMaster);
+        
+        _mixer.SetFloat(VolumeNameMusic, Settings.VolumeMusic);
+        _mixer.SetFloat(VolumeNameMenu, Settings.VolumeMenu);
+        _mixer.SetFloat(VolumeNameFX, Settings.VolumeFX);
     }
 
     #region For Navigation
@@ -33,7 +47,21 @@ public class Storage : MonoBehaviour
 
     #endregion
 
-    #region Statics for Tags
+    #region Static for Volume
+
+    private static string _mixerMaster = "MasterVolume";
+    private static string _mixerMusic = "MusicVolume";
+    private static string _mixerMenu = "MenuVolume";
+    private static string _mixerFX = "FXVolume";
+
+    public static string VolumeNameMaster { get { return _mixerMaster; } }
+    public static string VolumeNameMusic { get { return _mixerMusic; } }
+    public static string VolumeNameMenu { get { return _mixerMenu; } }
+    public static string VolumeNameFX { get { return _mixerFX; } }
+
+    #endregion
+
+    #region Static for Tags
 
     #region ToDo
 
@@ -72,14 +100,14 @@ public class Storage : MonoBehaviour
     private static string _bullet2StartPositionTag = "BulletStart2";// 16
     private static string _playerHeadTag = "PlayerHead";// 17
     private static string _enemyNavigatedTag = "EnemyNavigated";// 18
-    
-    private static string _untagged = "Untagged";
-    private static string _mainCamera = "MainCamera";
-    private static string _playerTag = "Player";
-    public static string PlayerTag { get { return _playerTag; } }
-    public static string MainCameraTag { get { return _mainCamera; } }
-    public static string Untagged { get { return _untagged; } }
-
+    private static string _healthUI = "UI_health";// 19
+    private static string _armorUI = "UI_armor";// 20
+    private static string _bulletsUI = "UI_bullets";// 21
+    private static string _grenadesUI = "UI_grenades";// 22
+    private static string _keysUI = "UI_keys";// 23
+    private static string _c4UI = "UI_C4";// 24
+    private static string _UI = "UI";// 25
+    private static string _audioSource = "AudioSource";// 26
 
     public static string RespTag { get { return _respTag; } }
     public static string GlobalTag { get { return _globalTag; } }
@@ -95,6 +123,21 @@ public class Storage : MonoBehaviour
     public static string Bullet2StartPositionTag { get { return _bullet2StartPositionTag; } }
     public static string PlayerHeadTag { get { return _playerHeadTag; } }
     public static string EnemyNavigatedTag { get { return _enemyNavigatedTag; } }
+    public static string HealthUITag { get { return _healthUI; } }
+    public static string ArmorUITag { get { return _armorUI; } }
+    public static string BulletsUITag { get { return _bulletsUI; } }
+    public static string GrenadesUITag { get { return _grenadesUI; } }
+    public static string KeysUITag { get { return _keysUI; } }
+    public static string C4UITag { get { return _c4UI; } }
+    public static string UITag { get { return _UI; } }
+    public static string AudioSourceTag { get { return _audioSource; } }
+
+    private static string _untagged = "Untagged";
+    private static string _mainCamera = "MainCamera";
+    private static string _playerTag = "Player";
+    public static string PlayerTag { get { return _playerTag; } }
+    public static string MainCameraTag { get { return _mainCamera; } }
+    public static string Untagged { get { return _untagged; } }
 
     #endregion
 

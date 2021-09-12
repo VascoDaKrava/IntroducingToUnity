@@ -23,6 +23,15 @@ TagManager:
   - BulletStart2
   - PlayerHead
   - EnemyNavigated
+  - UI_health
+  - UI_armor
+  - UI_bullets
+  - UI_grenades
+  - UI_keys
+  - UI_C4
+  - UI
+  - AudioSource
+  - ParticleSystem
   layers:
   - Default
   - TransparentFX

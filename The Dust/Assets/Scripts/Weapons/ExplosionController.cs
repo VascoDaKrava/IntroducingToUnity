@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ExplosionController : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class ExplosionController : MonoBehaviour
     private float _force;
 
     private string _boomMethodName = "MakeExplosion";
+
+    private AudioSource _audioSource;
+    private ParticleSystem _particleSystem;
+    private float _timeForFX = 2.5f;// Length of Audio to play, before object was destroyed
 
     /// <summary>
     /// Damage of explosion
@@ -87,6 +92,14 @@ public class ExplosionController : MonoBehaviour
             //}
         }
         Storage.ToLog(this, Storage.GetCallerName(), "B O O M!");
-        Destroy(_bomb);
+        _audioSource.Play();
+        _particleSystem.Play();
+        Destroy(_bomb, _timeForFX);
+    }
+
+    private void Start()
+    {
+        _audioSource = Storage.FindTransformInChildrenWithTag(gameObject, Storage.AudioSourceTag).GetComponent<AudioSource>();
+        _particleSystem = Storage.FindTransformInChildrenWithTag(gameObject, "ParticleSystem").GetComponent<ParticleSystem>();
     }
 }

@@ -11,7 +11,6 @@ public class BulletControllerRay : MonoBehaviour
 
     private int _mask = ~0; // All layers
     private float _bulletLength = 0.001f;
-    private float _magicNumber = 4f;
     private bool _isRayActive = true;
 
     public float BulletStartSpeed { get; set; }
@@ -24,21 +23,21 @@ public class BulletControllerRay : MonoBehaviour
         _bulletTransform = gameObject.transform;
         _bulletRigidbody = gameObject.GetComponent<Rigidbody>();
 
-        CheckHit();
+        CheckHit(Time.deltaTime * BulletStartSpeed);
 
         _bulletRigidbody.AddForce(_bulletTransform.forward * BulletStartSpeed, ForceMode.VelocityChange);
     }
 
     private void FixedUpdate()
     {
-        CheckHit();
+        CheckHit(Time.deltaTime * BulletStartSpeed);
     }
 
-    private void CheckHit()
+    private void CheckHit(float maxHitDistance)
     {
         if (!_isRayActive) return;
 
-        if (Physics.Raycast(_bulletTransform.position, _bulletTransform.forward, out _hitObj, _magicNumber, _mask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(_bulletTransform.position, _bulletTransform.forward, out _hitObj, maxHitDistance, _mask, QueryTriggerInteraction.Ignore))
         {
             Storage.ToLog(this, Storage.GetCallerName(), "Hit " + _hitObj.collider.transform.name + ". Distance : " + _hitObj.distance);
             _isRayActive = false;

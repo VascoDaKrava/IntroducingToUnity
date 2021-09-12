@@ -43,6 +43,9 @@ public class PlayerInteraction : MonoBehaviour
     public List<LootClass.LootTypes> Inventory { get { return _inventoryList; } }
 
     // Start is called before the first frame update
+
+    private UI _ui;
+
     void Start()
     {
         _weaponPositionTransform = Storage.FindTransformInChildrenWithTag(gameObject, Storage.WeaponPositionTag);
@@ -50,6 +53,10 @@ public class PlayerInteraction : MonoBehaviour
         _playerHead = Storage.FindTransformInChildrenWithTag(gameObject, Storage.PlayerHeadTag);
 
         _healthController = GetComponent<HealthController>();
+
+        _ui = GameObject.FindGameObjectWithTag(Storage.UITag).GetComponent<UI>();
+
+        UpdateUI();
     }
 
     // Update is called once per frame
@@ -63,15 +70,15 @@ public class PlayerInteraction : MonoBehaviour
 
         if (_showStat)
         {
-            Debug.Log(Time.time + " Health\t\t: " + GetComponent<HealthController>()?.Health);
-            Debug.Log(Time.time + " Armor\t\t: " + GetComponent<HealthController>()?.Armor);
-            Debug.Log(Time.time + " Bullet\t\t: " + _quantityBullets);
-            Debug.Log(Time.time + " Grenades\t\t: " + _quantityGrenades);
-            Debug.Log(Time.time + " Key\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Key));
-            Debug.Log(Time.time + " Weapon\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Weapon));
-            Debug.Log(Time.time + " \tC4\t: " + _weaponsList.Contains(LootClass.WeaponNames.C4));
-            Debug.Log(Time.time + " \tAK74\t: " + _weaponsList.Contains(LootClass.WeaponNames.AK74));
-            Debug.Log(Time.time + " \tAK74 clip fill\t: " + _weaponController?.ClipFullness);
+            //Debug.Log(Time.time + " Health\t\t: " + GetComponent<HealthController>()?.Health);
+            //Debug.Log(Time.time + " Armor\t\t: " + GetComponent<HealthController>()?.Armor);
+            //Debug.Log(Time.time + " Bullet\t\t: " + _quantityBullets);
+            //Debug.Log(Time.time + " Grenades\t\t: " + _quantityGrenades);
+            //Debug.Log(Time.time + " Key\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Key));
+            //Debug.Log(Time.time + " Weapon\t\t: " + _inventoryList.Contains(LootClass.LootTypes.Weapon));
+            //Debug.Log(Time.time + " \tC4\t: " + _weaponsList.Contains(LootClass.WeaponNames.C4));
+            //Debug.Log(Time.time + " \tAK74\t: " + _weaponsList.Contains(LootClass.WeaponNames.AK74));
+            //Debug.Log(Time.time + " \tAK74 clip fill\t: " + _weaponController?.ClipFullness);
         }
     }
 
@@ -86,7 +93,10 @@ public class PlayerInteraction : MonoBehaviour
     private void Fire1()
     {
         if (_weaponController.ReadyForFire)
+        {
             _weaponController.Fire();
+            UpdateUI();
+        }
     }
 
     private void Fire2()
@@ -98,11 +108,11 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         _grenadeGameObject = Instantiate(_grenadePrefab, _weaponPositionTransform.position, _playerHead.rotation, _grenadeParentTransform);
-        
+
         _grenadeGameObject.GetComponent<BoxCollider>().enabled = true;
-        
+
         _grebadeExplosionController = _grenadeGameObject.GetComponent<ExplosionController>();
-        
+
         _grenadeRigidbody = _grenadeGameObject.GetComponent<Rigidbody>();
         _grenadeRigidbody.isKinematic = false;
         _grenadeRigidbody.AddForce(_playerHead.forward * _grenadeThrowForce, ForceMode.Impulse);
@@ -114,6 +124,7 @@ public class PlayerInteraction : MonoBehaviour
         _grebadeExplosionController.LetBoom(_grenadeGameObject);
 
         _quantityGrenades--;
+        UpdateUI();
         Storage.ToLog(this, Storage.GetCallerName(), "Fire in the hole!!!");
     }
 
@@ -142,23 +153,26 @@ public class PlayerInteraction : MonoBehaviour
 
             case LootClass.LootTypes.Ammo:
                 _quantityBullets += _loot.QuantityBullets;
-                
+
                 // Add grenades
                 _quantityGrenades += _quantityGrenadesInLoot;
-                
+
                 if (_weaponActive)
                 {
                     _weaponController.ClipFullness = _quantityBullets;
                     _quantityBullets = 0;
                 }
+                UpdateUI();
                 break;
 
             case LootClass.LootTypes.Armor:
                 _healthController.AddArmor(_loot.LootPower);
+                UpdateUI();
                 break;
 
             case LootClass.LootTypes.Key:
                 _inventoryList.Add(_loot.LootType);
+                UpdateUI();
                 break;
 
             case LootClass.LootTypes.Weapon:
@@ -190,6 +204,7 @@ public class PlayerInteraction : MonoBehaviour
                     _weaponController.ClipFullness = _quantityBullets;
                     _quantityBullets = 0;
                 }
+                UpdateUI();
                 break;
 
             default:
@@ -207,6 +222,7 @@ public class PlayerInteraction : MonoBehaviour
     public void RemoveFromInventory(LootClass.LootTypes item)
     {
         _inventoryList.Remove(item);
+        UpdateUI();
     }
 
     /// <summary>
@@ -216,6 +232,7 @@ public class PlayerInteraction : MonoBehaviour
     public void RemoveFromInventory(LootClass.WeaponNames item)
     {
         _weaponsList.Remove(item);
+        UpdateUI();
     }
 
     /// <summary>
@@ -249,6 +266,7 @@ public class PlayerInteraction : MonoBehaviour
         for (int i = 0; i < times; i++)
         {
             _healthController.ChangeHealth(power / times);
+            UpdateUI();
             yield return StartCoroutine(WaitOneSec());
         }
     }
@@ -256,5 +274,16 @@ public class PlayerInteraction : MonoBehaviour
     IEnumerator WaitOneSec()
     {
         yield return new WaitForSeconds(1f);
+    }
+
+    public void UpdateUI()
+    {
+        _ui.Health = $"{_healthController.Health:d3}";
+        _ui.Armor = $"{_healthController.Armor:d3}";
+        _ui.Bullets = $"{(_quantityBullets > 0 ? _quantityBullets : _weaponActive ? _weaponController.ClipFullness : 0):d3}";
+        _ui.Grenades = $"{_quantityGrenades:d3}";
+
+        _ui.Keys = $"{(_inventoryList.Contains(LootClass.LootTypes.Key)?"Have key":"No more")}";
+        _ui.C4 = $"{(_weaponsList.Contains(LootClass.WeaponNames.C4)?"Have bomb":"No more")}";
     }
 }
