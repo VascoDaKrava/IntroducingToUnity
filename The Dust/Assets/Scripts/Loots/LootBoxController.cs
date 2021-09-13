@@ -18,6 +18,8 @@ public class LootBoxController : MonoBehaviour
     private Transform _topTransform;
     private int _topOpenAngle = 75;
 
+    private ParticleSystem _fx;
+
     [SerializeField] private GameObject _lootAsset;
 
     private GameObject _lootToTransfer;
@@ -27,9 +29,10 @@ public class LootBoxController : MonoBehaviour
     {
         foreach (Component item in gameObject.GetComponentsInChildren(typeof(Transform)))
         {
-            if (item.CompareTag("AmmoBoxLockTag")) _lockTransform = item.transform;
-            if (item.CompareTag("AmmoBoxTopTag")) _topTransform = item.transform;
+            if (item.CompareTag(Storage.AmmoBoxLockTag)) _lockTransform = item.transform;
+            if (item.CompareTag(Storage.AmmoBoxTopTag)) _topTransform = item.transform;
         }
+        _fx = Storage.FindTransformInChildrenWithTag(transform.parent.gameObject, Storage.ParticleSystemTag).GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -77,5 +80,6 @@ public class LootBoxController : MonoBehaviour
         other.GetComponent<PlayerInteraction>().GetLoot(_lootToTransfer);
         Storage.ToLog(this, Storage.GetCallerName(), _lootToTransfer.name);
         _isEmpty = true;
+        _fx.Stop();
     }
 }

@@ -36,6 +36,8 @@ public class TurretController : MonoBehaviour
     private Animation _animation;
 
     private AudioSource _audioSource;
+    private ParticleSystem _fxLeft;
+    private ParticleSystem _fxRight;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +51,10 @@ public class TurretController : MonoBehaviour
         _bulletStartRight = Storage.FindTransformInChildrenWithTag(gameObject, Storage.Bullet2StartPositionTag);
         _animation = GetComponent<Animation>();
         _audioSource = Storage.FindTransformInChildrenWithTag(gameObject, Storage.AudioSourceTag).GetComponent<AudioSource>();
+        _fxLeft = Storage.FindTransformInChildrenWithTag(gameObject, Storage.ParticleSystemTag).GetComponent<ParticleSystem>();
+        _fxLeft.transform.position = _bulletStartLeft.position;
+        _fxRight = Instantiate(_fxLeft, _bulletStartRight.position, Quaternion.identity, transform);
+
     }
 
     // Update is called once per frame
@@ -117,6 +123,7 @@ public class TurretController : MonoBehaviour
         _bulletCloneScript.BulletDamage = _bulletDamage;
         _bulletCloneScript.BulletLength = _bulletLength;
         _audioSource.Play();
+        _fxLeft.Play();
 
         Storage.ToLog(this, Storage.GetCallerName(), "Right gun");
         _bulletCloneScript = Instantiate(_bullet, _bulletStartRight.position, _bulletStartLeft.rotation, _bulletParentTransform).GetComponent<BulletControllerRay>();
@@ -124,5 +131,6 @@ public class TurretController : MonoBehaviour
         _bulletCloneScript.BulletDamage = _bulletDamage;
         _bulletCloneScript.BulletLength = _bulletLength;
         _audioSource.Play();
+        _fxRight.Play();
     }
 }
