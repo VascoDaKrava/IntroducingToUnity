@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Resp
+  - GlobalScript
+  - DynamicallyCreatedTag
+  - LootTag
+  - AmmoBoxLockTag
+  - AmmoBoxTopTag
+  - DoorLeft
+  - DoorRight
+  - QuestPlatform
+  - NordWayPoints
+  - UndergroundWayPoints
+  - SandWayPoints
+  - NavPoints
+  - WeaponPositionTag
+  - Weapon
+  - BulletStart1
+  - BulletStart2
+  - PlayerHead
+  - EnemyNavigated
+  - UI_health
+  - UI_armor
+  - UI_bullets
+  - UI_grenades
+  - UI_keys
+  - UI_C4
+  - UI
+  - AudioSource
+  - ParticleSystem
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ready for jump
+  - Water
+  - UI
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
